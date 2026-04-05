@@ -1,0 +1,150 @@
+/* 会員登録フォーム全体 */
+.register-form {
+    width: 680px;
+    max-width: 90%;
+    margin: 180px auto 80px;
+    padding: 0 20px;
+}
+
+.register-form__heading {
+    height: 48px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.register-form__inner {
+    width: 100%;
+}
+
+.register-form__form {
+    width: 100%;
+}
+
+.register-form__group {
+    margin-bottom: 30px;
+}
+
+.register-form__label {
+    display: block;
+    height: 35px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 10px;
+    line-height: 35px;
+}
+
+.register-form__input {
+    width: 100%;
+    height: 60px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: 1px solid #5f5f5f;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+.register-form__input:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+.register-form__error-message {
+    color: #ff5555;
+    font-size: 20px;
+    margin-top: 8px;
+    min-height: 20px;
+}
+
+.register-form__submit {
+    width: 100%;
+    height: 65px;
+    background-color: #ff5555;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700; /* Bold */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 70px;
+    font-family: "Inter", sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.register-form__submit:hover {
+    background-color: #e64444;
+}
+
+.register-form__login-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.register-form__login-link a {
+    font-size: 20px;
+    color: #0073cc;
+    text-decoration: none;
+}
+
+/* レスポンシブ対応 */
+
+/* タブレット (768px - 850px) */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .register-form {
+        width: 90%;
+        max-width: 600px;
+        margin: 120px auto 60px;
+        padding: 0 15px;
+    }
+
+    .register-form__heading {
+        font-size: 32px;
+        height: 44px;
+        margin-bottom: 35px;
+    }
+
+    .register-form__label {
+        font-size: 22px;
+        height: 32px;
+        line-height: 32px;
+    }
+
+    .register-form__input {
+        height: 55px;
+        font-size: 15px;
+    }
+
+    .register-form__submit {
+        height: 60px;
+        font-size: 24px;
+        margin-top: 60px;
+    }
+
+    .register-form__error-message {
+        font-size: 18px;
+    }
+
+    .register-form__login-link a {
+        font-size: 18px;
+    }
+}
+
+/* PC (1400px - 1540px) */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .register-form {
+        width: 680px;
+        margin: 180px auto 80px;
+    }
+
+    .register-form__input {
+        width: 100%;
+    }
+
+    .register-form__submit {
+        width: 100%;
+    }
+}
