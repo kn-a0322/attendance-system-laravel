@@ -14,12 +14,12 @@
 
 ## 使用技術（技術スタック）
 
-| カテゴリ | 技術 |
-|---|---|
-| 言語 | PHP 8.x |
+| カテゴリ       | 技術                           |
+| -------------- | ------------------------------ |
+| 言語           | PHP 8.x                        |
 | フレームワーク | Laravel 10.x / Laravel Fortify |
-| データベース | MySQL 8.x |
-| インフラ | Docker / Docker Desktop |
+| データベース   | MySQL 8.x                      |
+| インフラ       | Docker / Docker Desktop        |
 
 ---
 
@@ -56,13 +56,23 @@ docker-compose exec app php artisan key:generate
 docker-compose exec app php artisan migrate
 ```
 
+## メール認証
+
+mailtrapというツールを使用しています。<br>
+以下のリンクから会員登録をしてください。　<br>
+https://mailtrap.io/
+
+メールボックスのIntegrationsから 「PHP:Laravel 9+」を選択し、　<br>
+.envファイルのMAIL_MAILERからMAIL_ENCRYPTIONまでの項目をコピー＆ペーストしてください。　<br>
+MAIL_FROM_ADDRESSは任意のメールアドレスを入力してください。　
+
 ---
 
 ## URL
 
-| 環境 | URL |
-|---|---|
-| 開発環境（アプリ） | http://localhost |
+| 環境                    | URL                   |
+| ----------------------- | --------------------- |
+| 開発環境（アプリ）      | http://localhost      |
 | phpMyAdmin 等（DB管理） | http://localhost:8080 |
 
 > ※ ポート番号は `docker-compose.yml` の設定に合わせて変更してください。

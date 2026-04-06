@@ -21,9 +21,6 @@ class Admin extends Authenticatable
         'remember_token',
     ];
 
-    protected $casts = [
-        'password' => 'hashed',
-    ];
     
     public function correctionRequests()
     {

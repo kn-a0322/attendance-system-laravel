@@ -1,51 +1,93 @@
-/* 会員登録フォーム全体 */
+/* 会員登録（Figma基準: 幅1512px想定） */
+
 .register-form {
-    width: 680px;
-    max-width: 90%;
-    margin: 180px auto 80px;
-    padding: 0 20px;
+    position: relative;
+    width: 1512px;
+    max-width: none;
+    min-height: auto;
+    margin: 0 auto;
+    padding: 0 0 80px;
+    box-sizing: border-box;
 }
 
+.content:has(.register-form) {
+    overflow-x: auto;
+    /* ヘッダー直下の余白をやや詰める */
+    padding-top: 24px;
+}
+
+/* タイトル「会員登録」（ヘッダーとの距離を詰めて少し上へ） */
 .register-form__heading {
-    height: 48px;
-    font-size: 36px;
+    position: absolute;
+    top: 88px;
+    left: 684px;
+    width: 144px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
     font-weight: 700;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 100%;
     color: #000000;
     text-align: center;
-    margin-bottom: 40px;
 }
 
+/* 入力欄ブロック（タイトル位置に合わせて上へ） */
 .register-form__inner {
-    width: 100%;
+    width: 680px;
+    margin-left: 416px;
+    margin-right: auto;
+    padding-top: 220px;
+    box-sizing: border-box;
 }
 
 .register-form__form {
+    position: static;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.register-form__group {
-    margin-bottom: 30px;
-}
-
+/* 各項目のタイトル: Bold 24px #000000 */
 .register-form__label {
     display: block;
-    height: 35px;
-    font-size: 24px;
+    margin: 0 0 8px;
+    font-family: "Inter", sans-serif;
     font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
     color: #000000;
-    margin-bottom: 10px;
-    line-height: 35px;
 }
 
+/* 各項目同士の余白 */
+.register-form__group {
+    margin-bottom: 36px;
+}
+
+.register-form__group:last-of-type {
+    margin-bottom: 0;
+}
+
+/* テキスト入力欄 */
 .register-form__input {
     width: 100%;
-    height: 60px;
-    padding: 0 15px;
-    font-size: 16px;
-    border: 1px solid #5f5f5f;
-    border-radius: 4px;
+    max-width: 680px;
+    height: 45px;
+    padding: 0 12px;
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+}
+
+.register-form__input::placeholder {
+    color: #999999;
 }
 
 .register-form__input:focus {
@@ -54,97 +96,62 @@
 }
 
 .register-form__error-message {
+    margin: 6px 0 0;
+    font-size: 14px;
+    line-height: 1.4;
     color: #ff5555;
-    font-size: 20px;
-    margin-top: 8px;
-    min-height: 20px;
+    min-height: 1.2em;
 }
 
+/* 「登録する」: パスワード確認との間を広めに */
 .register-form__submit {
+    display: block;
+    position: static;
     width: 100%;
-    height: 65px;
-    background-color: #ff5555;
-    color: #ffffff;
-    font-size: 26px;
-    font-weight: 700; /* Bold */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 70px;
+    height: 60px;
+    margin-top: 80px;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "Inter", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 1;
     transition: background-color 0.3s ease;
 }
 
 .register-form__submit:hover {
-    background-color: #e64444;
+    background-color: #333333;
 }
 
+/* 「ログインはこちら」: ボタンの直下・中央揃え */
 .register-form__login-link {
-    text-align: center;
-    margin-top: 30px;
+    position: static;
+    width: 257px;
+    height: 49px;
+    margin: 24px auto 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .register-form__login-link a {
+    font-family: "Inter", sans-serif;
     font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
     color: #0073cc;
     text-decoration: none;
+    text-align: center;
 }
 
-/* レスポンシブ対応 */
-
-/* タブレット (768px - 850px) */
-@media screen and (min-width: 768px) and (max-width: 850px) {
-    .register-form {
-        width: 90%;
-        max-width: 600px;
-        margin: 120px auto 60px;
-        padding: 0 15px;
-    }
-
-    .register-form__heading {
-        font-size: 32px;
-        height: 44px;
-        margin-bottom: 35px;
-    }
-
-    .register-form__label {
-        font-size: 22px;
-        height: 32px;
-        line-height: 32px;
-    }
-
-    .register-form__input {
-        height: 55px;
-        font-size: 15px;
-    }
-
-    .register-form__submit {
-        height: 60px;
-        font-size: 24px;
-        margin-top: 60px;
-    }
-
-    .register-form__error-message {
-        font-size: 18px;
-    }
-
-    .register-form__login-link a {
-        font-size: 18px;
-    }
-}
-
-/* PC (1400px - 1540px) */
-@media screen and (min-width: 1400px) and (max-width: 1540px) {
-    .register-form {
-        width: 680px;
-        margin: 180px auto 80px;
-    }
-
-    .register-form__input {
-        width: 100%;
-    }
-
-    .register-form__submit {
-        width: 100%;
-    }
+.register-form__login-link a:hover {
+    opacity: 0.8;
 }

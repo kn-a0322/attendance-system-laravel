@@ -15,13 +15,13 @@
 <body>
 <div class="app">
     <header class="header">
-      <a href="{{ route('item.index') }}" class="header__logo" aria-label="{{ config('app.name', 'Furima') }} トップへ">
+      <a href="/" class="header__logo" aria-label="{{ config('app.name', 'Furima') }} トップへ">
         <img src="{{ asset('images/logo/coachtech-header-logo.png') }}" alt="COACHTECH">
       </a>
       @yield('link')
       @if (!Route::is('login') && !Route::is('register') && !Route::is('verify-email'))
       <nav class="header-nav">
-        <form class="header-nav__search-form" action="{{ route('item.index') }}" method="get">
+        <form class="header-nav__search-form" action="{{ route('attendance.index') }}" method="get">
           <input type="text" class="header-nav__search-input" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？" autocomplete="off">
         </form>
         @if (Auth::check())
@@ -32,8 +32,8 @@
         @else
           <a href="{{ route('login') }}" class="header-nav__login-link">ログイン</a>
         @endif
-        <a href="{{ route('mypage') }}" class="header-nav__mypage-link">マイページ</a>
-        <a href="{{ route('sell') }}" class="header-nav__sell-link">出品</a>
+        <a href="{{ route('attendance.index') }}" class="header-nav__mypage-link">マイページ</a>
+        <a href="{{ route('attendance.index') }}" class="header-nav__sell-link">出品</a>
       </nav>
       @endif
     </header>
