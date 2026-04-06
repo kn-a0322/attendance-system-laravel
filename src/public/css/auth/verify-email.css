@@ -1,0 +1,133 @@
+/* メール認証誘導（Figma基準: 幅1512px想定） */
+
+.verify-email {
+    position: relative;
+    width: 1512px;
+    max-width: none;
+    min-height: 680px;
+    margin: 0 auto;
+    padding: 0 0 80px;
+    box-sizing: border-box;
+}
+
+.content:has(.verify-email) {
+    overflow-x: auto;
+    padding-top: 24px;
+}
+
+.verify-email__inner {
+    position: relative;
+    min-height: 640px;
+}
+
+/* 再送成功メッセージ（仕様外のため簡易配置） */
+.verify-email__alert {
+    position: absolute;
+    top: 160px;
+    left: 399px;
+    width: 720px;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000000;
+    text-align: center;
+}
+
+/* 1文目を必ず一行で表示（改行禁止） */
+.verify-email__message-line1 {
+    white-space: nowrap;
+}
+
+/* メイン文言 Bold 24px 中央 #000（1行目が720pxを超える場合は幅に合わせて拡張） */
+.verify-email__message {
+    position: absolute;
+    top: 270px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: min(920px, calc(100% - 40px));
+    min-width: 720px;
+    min-height: 58px;
+    margin: 0;
+    padding: 0 12px;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.35;
+    color: #000000;
+    text-align: center;
+}
+
+/* 「認証はこちらから」ボタン（本文との間隔を広げる） */
+.verify-email__button {
+    position: absolute;
+    top: 430px;
+    left: 628px;
+    margin: 0;
+    padding: 0;
+}
+
+.verify-email__fake-button {
+    width: 257px;
+    height: 69px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #000000;
+    background-color: #d9d9d9;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    opacity: 1;
+    cursor: default;
+    user-select: none;
+}
+
+/* 「認証メールを再送する」（ボタン位置に合わせて追随） */
+.verify-email__resend {
+    position: absolute;
+    top: 599px;
+    left: 628px;
+    margin: 0;
+    padding: 0;
+}
+
+.verify-email__form {
+    margin: 0;
+    padding: 0;
+}
+
+.verify-email__resend-link {
+    width: 257px;
+    height: 53.291px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #0073cc;
+    background: transparent;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.verify-email__resend-link:hover {
+    opacity: 0.85;
+}
+
+@media screen and (max-width: 1511px) {
+    .verify-email {
+        min-width: 1512px;
+    }
+}

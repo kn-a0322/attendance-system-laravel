@@ -12,9 +12,9 @@
              新しい認証リンクが、登録されたメールアドレスに送信されました。
            </div>
         @endif
-        
+
         <p class="verify-email__message">
-            登録していただいたメールアドレスに認証メールを送付しました。<br>
+            <span class="verify-email__message-line1">登録していただいたメールアドレスに認証メールを送付しました。</span><br>
             メール認証を完了してください
         </p>
         <div class="verify-email__button">
