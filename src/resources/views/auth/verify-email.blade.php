@@ -17,8 +17,8 @@
             <span class="verify-email__message-line1">登録していただいたメールアドレスに認証メールを送付しました。</span><br>
             メール認証を完了してください
         </p>
-        <div class="verify-email__button">
-            <div class="verify-email__fake-button">認証はこちらから</div>
+        <div class="verify-email__link">
+            <a href="http://localhost:8025" targeet="_blank" class="verify-email__button">認証はこちらから</a>
         </div>
         <div class="verify-email__resend">
             <form class="verify-email__form" method="POST" action="{{ route('verification.send') }}">
