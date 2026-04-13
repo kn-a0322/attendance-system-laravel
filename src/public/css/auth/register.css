@@ -64,7 +64,7 @@
 
 /* 各項目同士の余白 */
 .register-form__group {
-    margin-bottom: 36px;
+    margin-bottom: 40px;
 }
 
 .register-form__group:last-of-type {

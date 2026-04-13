@@ -17,8 +17,8 @@ class CreateCorrectionRequestsTable extends Migration
             $table->id();
             $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('admin_id')->nullable()->constrained('admins')->cascadeOnDelete();
             $table->tinyInteger('status')->default(0);
+            $table->foreignId('approved_by')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
         });

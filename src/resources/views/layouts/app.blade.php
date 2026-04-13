@@ -15,25 +15,51 @@
 <body>
 <div class="app">
     <header class="header">
-      <a href="/" class="header__logo" aria-label="{{ config('app.name', 'Furima') }} トップへ">
+      <a href="/" class="header__logo" aria-label="{{ config('app.name', 'Attendance system') }} トップへ">
         <img src="{{ asset('images/logo/coachtech-header-logo.png') }}" alt="COACHTECH">
       </a>
       @yield('link')
-      @if (!Route::is('login') && !Route::is('register') && !Route::is('verify-email'))
+      @if (!Route::is('login') && !Route::is('register') && !Route::is('verify-email') && !Route::is('admin.login'))
       <nav class="header-nav">
-        <form class="header-nav__search-form" action="{{ route('attendance.index') }}" method="get">
-          <input type="text" class="header-nav__search-input" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？" autocomplete="off">
-        </form>
         @if (Auth::check())
-          <form action="{{ route('logout') }}" method="post">
+        @if (Auth::user()->isAdmin()){{--管理者の場合--}}
+        <ul class="header-nav__admin-menu">
+          <li class="header-nav__admin-menu-item">
+            <a href="{{ route('admin.attendance.list') }}" class="header-nav__admin-link">勤怠一覧</a>
+          </li>
+          <li class="header-nav__admin-menu-item">
+            <a href="{{ route('admin.staff.list') }}" class="header-nav__staff-list-link">スタッフ一覧</a>
+          </li>
+          <li class="header-nav__admin-menu-item">
+            <a href="{{ route('admin.stamp_correction_request.list') }}" class="header-nav__stamp-correction-request-link">申請一覧</a>
+          </li>
+          <li class="header-nav__admin-menu-item">
+            <form action="{{ route('logout') }}" method="post">
             @csrf
-            <button type="submit" class="header-nav__logout-button">ログアウト</button>
-          </form>
-        @else
-          <a href="{{ route('login') }}" class="header-nav__login-link">ログイン</a>
+              <button type="submit" class="header-nav__logout-button">ログアウト</button>
+            </form>
+          </li>
+        </ul>
+        @else{{--一般ユーザーの場合--}}
+        <ul class="header-nav__user-menu">
+          <li class="header-nav__user-menu-item">
+            <a href="{{ route('attendance.index') }}" class="header-nav__attendance-link">勤怠</a>
+          </li>
+          <li class="header-nav__user-menu-item">
+            <a href="{{ route('attendance.list') }}" class="header-nav__attendance-list-link">勤怠一覧</a>
+          </li>
+          <li class="header-nav__user-menu-item">
+            <a href="{{ route('stamp_correction_request.list') }}" class="header-nav__stamp-correction-request-link">申請一覧</a>
+          </li>
+          <li class="header-nav__user-menu-item">
+            <form action="{{ route('logout') }}" method="post">
+            @csrf
+              <button type="submit" class="header-nav__logout-button">ログアウト</button>
+            </form>
+          </li>
+        </ul>
         @endif
-        <a href="{{ route('attendance.index') }}" class="header-nav__mypage-link">マイページ</a>
-        <a href="{{ route('attendance.index') }}" class="header-nav__sell-link">出品</a>
+        @endif
       </nav>
       @endif
     </header>

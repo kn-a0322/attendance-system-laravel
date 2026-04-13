@@ -31,9 +31,9 @@ class CorrectionRequest extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function admin()
+    public function approvedBy()
     {
-        return $this->belongsTo(Admin::class);
+        return $this->belongsTo(User::class, 'approved_by');
     }
 
     public function detail()
