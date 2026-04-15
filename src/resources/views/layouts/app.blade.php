@@ -36,6 +36,7 @@
           <li class="header-nav__admin-menu-item">
             <form action="{{ route('logout') }}" method="post">
             @csrf
+              <input type="hidden" name="logout_to" value="admin">
               <button type="submit" class="header-nav__logout-button">ログアウト</button>
             </form>
           </li>
@@ -49,11 +50,12 @@
             <a href="{{ route('attendance.list') }}" class="header-nav__attendance-list-link">勤怠一覧</a>
           </li>
           <li class="header-nav__user-menu-item">
-            <a href="{{ route('stamp_correction_request.list') }}" class="header-nav__stamp-correction-request-link">申請一覧</a>
+            <a href="{{ route('stamp_correction_request.list') }}" class="header-nav__stamp-correction-request-link">申請</a>
           </li>
           <li class="header-nav__user-menu-item">
             <form action="{{ route('logout') }}" method="post">
             @csrf
+              <input type="hidden" name="logout_to" value="user">
               <button type="submit" class="header-nav__logout-button">ログアウト</button>
             </form>
           </li>

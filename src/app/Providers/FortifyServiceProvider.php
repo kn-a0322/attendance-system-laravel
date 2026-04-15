@@ -37,7 +37,12 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.register');
         });
 
-        Fortify::loginView(function () {
+        // URL（ルート名）で一般 / 管理者のビューを切り替える。
+        Fortify::loginView(function (Request $request) {
+            if ($request->routeIs('admin.login')) {
+                return view('auth.admin_login');
+            }
+
             return view('auth.login');
         });
 

@@ -37,7 +37,7 @@
 }
 
 .login-form__inner {
-    width: min(680px, 100%);
+    width: 680px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 220px;
@@ -156,7 +156,7 @@
     opacity: 0.8;
 }
 
-/* PC 1400px〜1540px（register.css と同様） */
+/* PC 1400px〜1540pxレスポンシブ対応 */
 @media screen and (min-width: 1400px) and (max-width: 1540px) {
     .content:has(.login-form) {
         overflow-x: visible;
@@ -179,7 +179,7 @@
     }
 
     .login-form__inner {
-        width: min(680px, 100%);
+        width: 680px;
         padding-top: clamp(180px, 16vw, 220px);
     }
 

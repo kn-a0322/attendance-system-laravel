@@ -8,7 +8,7 @@
 <div class="login-form--admin">
     <h1 class="login-form__heading">管理者ログイン</h1>
     <div class="login-form__inner">
-        <form class="login-form__form" action="{{ route('admin.login') }}" method="post" novalidate>
+        <form class="login-form__form" action="{{ route('login') }}" method="post" novalidate>
             @csrf
             <div class="login-form__group">
                 <label class="login-form__label" for="email">メールアドレス</label>
@@ -24,10 +24,7 @@
                 <p class="login-form__error-message">{{ $message }}</p>
                 @enderror
             </div>
-            <input class="login-form__submit" type="submit" value="ログインする">
-            <div class="login-form__register-link">
-                <a href="{{ route('login') }}">ログインはこちら</a>
-            </div>
+            <input class="login-form__submit" type="submit" value="管理者ログインする">
         </form>
     </div>
 </div>

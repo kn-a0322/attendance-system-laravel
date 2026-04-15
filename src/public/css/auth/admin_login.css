@@ -37,7 +37,7 @@
 }
 
 .login-form--admin .login-form__inner {
-    width: min(680px, 100%);
+    width: 680px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 220px;
@@ -128,35 +128,7 @@
     background-color: #333333;
 }
 
-/* 「ログインはこちら」 */
-.login-form--admin .login-form__register-link {
-    position: static;
-    width: 257px;
-    height: 49px;
-    margin: 24px auto 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-}
-
-.login-form--admin .login-form__register-link a {
-    font-family: "Inter", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1;
-    color: #0073cc;
-    text-decoration: none;
-    text-align: center;
-}
-
-.login-form--admin .login-form__register-link a:hover {
-    opacity: 0.8;
-}
-
-/* PC 1400px〜1540px（login.css と同様） */
+/* PC 1400px〜1540pxレスポンシブ対応*/
 @media screen and (min-width: 1400px) and (max-width: 1540px) {
     .content:has(.login-form--admin) {
         overflow-x: visible;
@@ -179,7 +151,7 @@
     }
 
     .login-form--admin .login-form__inner {
-        width: min(680px, 100%);
+        width: 680px;
         padding-top: clamp(180px, 16vw, 220px);
     }
 

@@ -15,15 +15,27 @@ use App\Http\Controllers\StampCorrectionRequestController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//一般ユーザー用ログイン画面
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+//管理者用ログイン画面
+Route::get('/admin/login', function () {
+    return view('auth.admin_login');
+})->name('admin.login');
 
-
-//まずログインしているかチェック
+//ログインしているかチェック
 Route::middleware(['auth', 'verified'])->group(function () {
 
     //一般ユーザー,管理者共通
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+    Route::post('/attendance/start', [AttendanceController::class, 'store'])->name('attendance.start');
+    Route::post('/attendance/end', [AttendanceController::class, 'end'])->name('attendance.end');
+    Route::post('/attendance/rest-start', [AttendanceController::class, 'restStart'])->name('attendance.rest-start');
+    Route::post('/attendance/rest-end', [AttendanceController::class, 'restEnd'])->name('attendance.rest-end');
     Route::get('/attendance/list', [AttendanceController::class, 'list'])->name('attendance.list');
     Route::get('/stamp_correction_request/list', [StampCorrectionRequestController::class, 'index'])->name('stamp_correction_request.list');
+
     
 
     //管理者のみアクセス可能
@@ -31,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/admin/attendance/list', [AttendanceController::class, 'index'])->name('admin.attendance.list');
         Route::get('/admin/staff/list', [StaffController::class, 'index'])->name('admin.staff.list');
         Route::get('/admin/stamp_correction_request/list', [StampCorrectionRequestController::class, 'index'])->name('admin.stamp_correction_request.list');
+
 
     });
 });

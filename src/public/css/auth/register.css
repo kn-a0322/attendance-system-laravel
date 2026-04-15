@@ -37,7 +37,7 @@
 
 /* 入力欄ブロック（タイトル位置に合わせて上へ・横中央） */
 .register-form__inner {
-    width: min(680px, 100%);
+    width: 680px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 220px;
@@ -182,7 +182,7 @@
     }
 
     .register-form__inner {
-        width: min(680px, 100%);
+        width: 680px;
         padding-top: clamp(180px, 16vw, 220px);
     }
 
