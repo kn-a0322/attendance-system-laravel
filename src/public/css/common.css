@@ -19,6 +19,7 @@ body {
     display: flex;
     align-items: center;
     padding: 0 20px 0 0;
+    overflow: hidden;
 }
 
 /* レイアウト指定: width 370 / height 36 / top 22 / left 25 */
@@ -32,6 +33,7 @@ body {
     line-height: 1;
     display: block;
     text-decoration: none;
+    z-index: 1;
 }
 
 .header__logo img {
@@ -59,83 +61,159 @@ body {
     align-items: center;
     flex: 1;
     margin-left: calc(25px + 370px + 24px);
-}
-
-/* 検索フォーム */
-.header-nav__search-form {
-    display: flex;
-    align-items: center;
-    flex: 1;
     min-width: 0;
+    height: 100%;
 }
 
-.header-nav__search-input {
-    width: 100%;
-    max-width: 500px;
-    height: 50px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    padding: 0 15px;
-    font-size: 24px;
-    color: #000000;
-    background-color: #ffffff;
+/* 一般ユーザー: ナビはヘッダー全幅基準で配置（勤怠の起点 left: 1019px @1512px） */
+.header-nav:has(.header-nav__user-menu) {
+    margin-left: 0;
+    position: relative;
 }
 
-.header-nav__login-link {
+/* 管理者: 右寄せ */
+.header-nav:has(.header-nav__admin-menu) {
+    justify-content: flex-end;
+    padding-right: 4px;
+}
+
+/* 管理者メニュー */
+.header-nav__admin-menu {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 135px;
-    height: 47px;
-    margin-left: 37px;
-    font-size: 20px;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.header-nav__logout-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 135px;
-    height: 47px;
-    margin-left: 37px;
-    font-size: 20px;
-    color: #ffffff;
-    background: none;
-    border: none;
-    cursor: pointer;
+    gap: 40px;
+    margin: 0;
     padding: 0;
+    list-style: none;
+    max-height: 82px;
 }
 
-.header-nav__mypage-link {
+.header-nav__admin-menu-item {
     display: flex;
     align-items: center;
-    flex-shrink: 0;
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: 20px;
+}
+
+.header-nav__admin-menu .header-nav__admin-link,
+.header-nav__admin-menu .header-nav__staff-list-link,
+.header-nav__admin-menu .header-nav__stamp-correction-request-link,
+.header-nav__admin-menu .header-nav__logout-button {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
     color: #ffffff;
     text-decoration: none;
     white-space: nowrap;
 }
 
-.header-nav__sell-link {
-    display: flex;
+.header-nav__admin-menu .header-nav__logout-button {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    width: 100px;
-    height: 50px;
-    margin-right: 10px;
-    border-radius: 4px;
-    font-size: 20px;
-    color: #000000;
-    background-color: #ffffff;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* 一般ユーザー: 左→右 勤怠 / 勤怠一覧 / 申請 / ログアウト（等間隔） */
+.header-nav__user-menu {
+    position: absolute;
+    top: 50%;
+    left: 1019px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 48px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 82px;
+}
+
+.header-nav__user-menu-item {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* 一般ユーザーナビ共通: Bold 24px #FFF */
+.header-nav__user-menu .header-nav__attendance-link,
+.header-nav__user-menu .header-nav__attendance-list-link,
+.header-nav__user-menu .header-nav__stamp-correction-request-link,
+.header-nav__user-menu .header-nav__logout-button {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
+    color: #ffffff;
     text-decoration: none;
+    white-space: nowrap;
+}
+
+.header-nav__user-menu .header-nav__logout-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    min-height: 0;
+    margin-left: 0;
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+}
+
+/* 「勤怠」リンクの枠 */
+.header-nav__user-menu .header-nav__attendance-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 48px;
+    height: 29px;
+    line-height: 1;
+}
+
+/* PC 幅 1400–1540px: デザイン幅 1512px に合わせて起点・間隔を調整 */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .header-nav__user-menu {
+        left: calc(1019 / 1512 * 100vw);
+        gap: clamp(28px, 2.8vw, 48px);
+    }
+
+    .header-nav__admin-menu {
+        gap: clamp(28px, 2.5vw, 40px);
+    }
+
+    .header__logo {
+        width: clamp(300px, 24.5vw, 370px);
+        left: clamp(16px, 1.65vw, 25px);
+    }
+
+    .header-nav:not(:has(.header-nav__user-menu)) {
+        margin-left: calc(clamp(16px, 1.65vw, 25px) + clamp(300px, 24.5vw, 370px) + 24px);
+    }
+}
+
+@media (max-width: 1399px) {
+    .header-nav__user-menu {
+        left: auto;
+        right: 20px;
+        transform: translateY(-50%);
+        gap: clamp(16px, 3vw, 32px);
+        max-width: calc(100vw - 440px);
+    }
 }
 
 /* コンテンツエリア */
