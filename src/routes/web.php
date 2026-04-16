@@ -29,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //一般ユーザー,管理者共通
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-    Route::post('/attendance/start', [AttendanceController::class, 'store'])->name('attendance.start');
+    Route::post('/attendance/start', [AttendanceController::class, 'start'])->name('attendance.start');
     Route::post('/attendance/end', [AttendanceController::class, 'end'])->name('attendance.end');
     Route::post('/attendance/rest-start', [AttendanceController::class, 'restStart'])->name('attendance.rest-start');
     Route::post('/attendance/rest-end', [AttendanceController::class, 'restEnd'])->name('attendance.rest-end');

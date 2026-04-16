@@ -1,0 +1,148 @@
+/* 勤怠画面（フレーム 1512×982 背景 #F0EFF2） */
+
+.content:has(.attendance-page) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f0eff2;
+    flex: 1;
+    width: 100%;
+}
+
+.attendance-page {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1512px;
+    min-height: calc(982px - 82px);
+    margin: 0 auto;
+    padding: 207px 20px 80px;
+    /* フレーム上端からステータスまで 289px（ヘッダー高さ 82px を差し引きして padding-top） */
+}
+
+.attendance-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* ステータス表示*/
+.attendance-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 100px;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 50px;
+    background-color: #c8c8c8;
+    font-weight: 700;
+    font-size: 18px;
+    color: #696969;
+    margin-bottom: 32px;
+}
+
+/* 日付: Regular 40px（デザイン上の 332px 幅では大きな文字が折り返すため、1行表示で幅は内容に合わせる） */
+.attendance-date {
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto 32px;
+    padding: 0 8px;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    min-height: 48px;
+    text-align: center;
+    color: #000000;
+    white-space: nowrap;
+}
+
+/* 時刻: Bold 80px（242px 固定では「09:50」が折り返すため、1行表示で幅は内容に合わせる） */
+.attendance-time {
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto 87px;
+    padding: 0 8px;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 97px;
+    min-height: 97px;
+    text-align: center;
+    color: #000000;
+    white-space: nowrap;
+}
+
+.attendance-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.attendance-buttons form {
+    margin: 0;
+    display: inline-flex;
+}
+
+/* ボタン共通: 221×77, radius 20, Bold 32px */
+.attendance-buttons .btn {
+    box-sizing: border-box;
+    width: 221px;
+    height: 77px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 32px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* 出勤・退勤: 黒地・白文字 */
+.attendance-buttons .btn-start,
+.attendance-buttons .btn-end {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* 休憩入・休憩戻: 白地・黒文字 */
+.attendance-buttons .btn-rest {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+/* 退勤 + 休憩入 など 2 列: 約 300px 間隔 */
+.button-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 200px;
+}
+
+.text-message {
+    margin: 0;
+    font-size: 18px;
+    text-align: center;
+    color: #000000;
+}
+
+.text-message.success {
+    color: #2563eb;
+}
+
+.text-message.error {
+    color: #dc2626;
+}
+
+/* 退勤後メッセージ */
+.text-message--done {
+    font-weight: 700;
+    font-size: 26px;
+    color: #000000;
+}

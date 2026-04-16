@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Attendance extends Model
 {
@@ -25,15 +26,15 @@ class Attendance extends Model
 
     protected $casts = [
         'date' => 'date',
-        'clock_in' => 'datetime',
-        'clock_out' => 'datetime',
+        'clock_in' => 'string',
+        'clock_out' => 'string',
     ];
 
     /*自分のレコードを取得するスコープ*/
-    public function scopeToday($query)
+    public function scopeToday($query, $userId)
     {
-        return $query->where('user_id', auth()->user()->id)
-                     ->where('date', now()->format('Y-m-d'));
+        return $query->where('user_id', $userId)
+                     ->whereDate('date', Carbon::today());
     }
 
     public function user()
