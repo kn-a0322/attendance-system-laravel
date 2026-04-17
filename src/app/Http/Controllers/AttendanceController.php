@@ -133,4 +133,26 @@ class AttendanceController extends Controller
 
         return redirect()->route('attendance.index')->with('success', '休憩を終了しました。');
     }
+
+    public function list(Request $request)
+    {
+        /*表示する「月」を取得*/
+        $month = $request->query('month', now()->format('Y-m'));
+        $currentMonth = Carbon::parse($month);
+
+        /*表示する「月」の全データ、リレーションで休憩データを取得*/
+        $attendances = Attendance::where('user_id', auth()->id())
+        ->whereMonth('date', $currentMonth->month)
+        ->whereYear('date', $currentMonth->year)
+        ->orderBy('date', 'asc')/*日付順に並び替え*/
+        ->with('rests')
+        ->get();
+
+        /*前月・翌月のリンクを作成*/
+        $prevMonth = $currentMonth->subMonth()->format('Y-m');
+        $nextMonth = $currentMonth->addMonth()->format('Y-m');
+
+        return view('attendance_list', compact('attendances', 'currentMonth', 'prevMonth', 'nextMonth'));
+    }
+
 }

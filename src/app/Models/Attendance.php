@@ -51,4 +51,44 @@ class Attendance extends Model
     {
         return $this->hasMany(CorrectionRequest::class);
     }
+    
+    /*休憩時間の合計を取得*/
+    public function getTotalRestTimeAttribute()
+    {
+       $totalMinutes = 0;
+       foreach ($this->rests as $rest) {
+        if($rest->rest_start && $rest->rest_end) {
+           $start = Carbon::parse($rest->rest_start);
+           $end = Carbon::parse($rest->rest_end);
+           $totalMinutes += $start->diffInMinutes($end);
+        }
+       }
+       $hours = floor($totalMinutes / 60);
+       $minutes = $totalMinutes % 60;
+       return sprintf('%02d:%02d', $hours, $minutes);
+    }
+    
+    /*実動時間を取得(勤務時間合計ー休憩時間合計)*/
+    public function getWorkTimeAttribute()
+    {
+        if(!$this->clock_in || !$this->clock_out) {
+            return null;
+      } 
+      
+      $start = Carbon::parse($this->clock_in);
+      $end = Carbon::parse($this->clock_out);
+
+      $totalWorkMinutes = $start->diffInMinutes($end);
+      $totalMinutes = 0;
+       foreach ($this->rests as $rest) {
+        if($rest->rest_start && $rest->rest_end) {
+           $totalRestMinutes += Carbon::parse($rest->rest_start)->diffInMinutes(Carbon::parse($rest->rest_end));
+        }
+       }
+       $totalWorkMinutes -= $totalRestMinutes;
+       $hours = floor($totalWorkMinutes / 60);
+       $minutes = $totalWorkMinutes % 60;
+       return sprintf('%02d:%02d', $hours, $minutes);
+      
+    }
 }

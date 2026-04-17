@@ -185,7 +185,7 @@ body {
     line-height: 1;
 }
 
-/* PC 幅 1400–1540px: デザイン幅 1512px に合わせて起点・間隔を調整 */
+/* PC 1400–1540pxレスポンシブ対応*/
 @media (min-width: 1400px) and (max-width: 1540px) {
     .header-nav__user-menu {
         left: calc(1019 / 1512 * 100vw);
@@ -202,7 +202,9 @@ body {
     }
 
     .header-nav:not(:has(.header-nav__user-menu)) {
-        margin-left: calc(clamp(16px, 1.65vw, 25px) + clamp(300px, 24.5vw, 370px) + 24px);
+        margin-left: calc(
+            clamp(16px, 1.65vw, 25px) + clamp(300px, 24.5vw, 370px) + 24px
+        );
     }
 }
 
