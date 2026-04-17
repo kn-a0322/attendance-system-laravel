@@ -149,8 +149,8 @@ class AttendanceController extends Controller
         ->get();
 
         /*前月・翌月のリンクを作成*/
-        $prevMonth = $currentMonth->subMonth()->format('Y-m');
-        $nextMonth = $currentMonth->addMonth()->format('Y-m');
+        $prevMonth = $currentMonth->copy()->subMonth()->format('Y-m');
+        $nextMonth = $currentMonth->copy()->addMonth()->format('Y-m');
 
         return view('attendance_list', compact('attendances', 'currentMonth', 'prevMonth', 'nextMonth'));
     }
