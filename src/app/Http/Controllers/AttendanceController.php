@@ -152,7 +152,21 @@ class AttendanceController extends Controller
         $prevMonth = $currentMonth->copy()->subMonth()->format('Y-m');
         $nextMonth = $currentMonth->copy()->addMonth()->format('Y-m');
 
-        return view('attendance_list', compact('attendances', 'currentMonth', 'prevMonth', 'nextMonth'));
+        /*カレンダー表示*/
+        $calendarDays = collect();
+        $startDate = $currentMonth->copy()->startOfMonth();
+
+        for ($d = 0; $d < $currentMonth->daysInMonth; $d++) {
+            $calendarDays->push($startDate->copy()->addDays($d));
+        }
+
+        return view('attendance_list', compact(
+            'attendances',
+            'currentMonth',
+            'prevMonth',
+            'nextMonth',
+            'calendarDays'
+        ));
     }
 
 }

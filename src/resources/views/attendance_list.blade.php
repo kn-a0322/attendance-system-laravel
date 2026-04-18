@@ -25,21 +25,44 @@
                 </tr>
             </thead>
             <tbody class="attendance-list__table-body">
-                @foreach($attendances as $attendance)
+                @foreach($calendarDays as $day)
+                {{-- $attendancesの中から、'date'カラムが$dayの日付と一致するものを1件探す --}}
+                @php
+                    $attendance = $attendances->first(function($attendance) use ($day) {
+                        $dbDate = $attendance->date instanceof \Carbon\Carbon ? $attendance->date->format('Y-m-d') : $attendance->date;
+                        return $dbDate === $day->format('Y-m-d');
+                    });
+                @endphp
+
                 <tr class="attendance-list__table-row">
                     <td class="attendance-list__table-cell">
-                        {{ $attendance->date->format('m/d') }}({{ ['日', '月', '火', '水', '木', '金', '土'][$attendance->date->format('w')] }})</td>
-                    <td class="attendance-list__table-cell">
-                        {{ $attendance->clock_in ? \Carbon\Carbon::parse($attendance->clock_in)->format('H:i') : '' }}</td>
-                    <td class="attendance-list__table-cell">
-                        {{ $attendance->clock_out ? \Carbon\Carbon::parse($attendance->clock_out)->format('H:i') : '' }}</td>
-                    <td class="attendance-list__table-cell">
-                        {{ $attendance->total_rest_time }}</td>
-                    <td class="attendance-list__table-cell">
-                        {{ $attendance->total_work_time }}</td>
-                    <td class="attendance-list__table-cell">
-                        <a href="{{ route('attendance.detail', $attendance->id) }}" class="detail-link">詳細</a>
+                        {{ $day->format('m/d') }}({{ ['日', '月', '火', '水', '木', '金', '土'][$day->format('w')] }})
                     </td>
+
+                    @if($attendance)
+                        <td class="attendance-list__table-cell">
+                            {{ $attendance->clock_in ? \Carbon\Carbon::parse($attendance->clock_in)->format('H:i') : '' }}
+                        </td>
+                        <td class="attendance-list__table-cell">
+                        {{ $attendance->clock_out ? \Carbon\Carbon::parse($attendance->clock_out)->format('H:i') : '' }}
+                        </td>
+                        <td class="attendance-list__table-cell">
+                            {{ $attendance->total_rest_time }}
+                        </td>
+                        <td class="attendance-list__table-cell">
+                            {{ $attendance->work_time ?? '' }}
+                        </td>
+                        <td class="attendance-list__table-cell">
+                            <a href="{{ route('attendance.detail', $attendance->id) }}" class="detail-link">詳細</a>
+                        </td>
+    
+                    @else
+                        <td class="attendance-list__table-cell"></td>
+                        <td class="attendance-list__table-cell"></td>
+                        <td class="attendance-list__table-cell"></td>
+                        <td class="attendance-list__table-cell"></td>
+                        <td class="attendance-list__table-cell"></td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
