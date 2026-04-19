@@ -1,17 +1,29 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/auth/attendance_list.css')}}">
+<link rel="stylesheet" href="{{ asset('css/attendance_list.css') }}">
 @endsection
 
 @section('content')
 <div class="attendance-list">
-    <h1 class="attendance-list__heading">勤怠一覧</h1>
-    <div class="month-nav">
-        <a href="{{ route('attendance.list', ['month' => $prevMonth]) }}" class="month-nav__prev">&larr; 前月</a>
-        <span class="month-nav__current">{{ $currentMonth->format('Y/m') }}</span>
-        <a href="{{ route('attendance.list', ['month' => $nextMonth]) }}" class="month-nav__next">&rarr; 翌月</a>
+    <div class="attendance-list__header">
+        <span class="attendance-list__title-accent" aria-hidden="true"></span>
+        <h1 class="attendance-list__heading">勤怠一覧</h1>
     </div>
+    <nav class="month-nav" aria-label="月の切り替え">
+        <a href="{{ route('attendance.list', ['month' => $prevMonth]) }}" class="month-nav__link month-nav__link--prev">
+            <img src="{{ asset('images/logo/arrow.png') }}" alt="" class="month-nav__arrow month-nav__arrow--prev" width="20" height="20">
+            <span>前月</span>
+        </a>
+        <div class="month-nav__current">
+            <img src="{{ asset('images/logo/calender.png') }}" alt="" class="month-nav__calendar-icon" width="22" height="22">
+            <span class="month-nav__current-text">{{ $currentMonth->format('Y/m') }}</span>
+        </div>
+        <a href="{{ route('attendance.list', ['month' => $nextMonth]) }}" class="month-nav__link month-nav__link--next">
+            <span>翌月</span>
+            <img src="{{ asset('images/logo/arrow.png') }}" alt="" class="month-nav__arrow month-nav__arrow--next" width="20" height="20">
+        </a>
+    </nav>
     <div class="attendance-list__table">
         <table class="attendance-list__table-inner">
             <thead class="attendance-list__table-header">

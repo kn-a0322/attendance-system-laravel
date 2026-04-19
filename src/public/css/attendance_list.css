@@ -1,0 +1,311 @@
+/* 勤怠一覧ページ（背景 #F0EFF2） */
+
+.content:has(.attendance-list) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f0eff2;
+    flex: 1;
+    width: 100%;
+}
+
+.attendance-list {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: 89px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 字間 15%（フォントサイズ基準は em） */
+    letter-spacing: 0.15em;
+}
+
+/* タイトル・月ナビ・テーブルを同じ 900px 幅で中央揃え（左端を一致） */
+.attendance-list__header,
+.month-nav,
+.attendance-list__table {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* タイトル行：左アクセント + 見出し */
+.attendance-list__header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 47px;
+}
+
+/* 左ボーダー（8px 幅 × 40px 高さの縦バー） */
+.attendance-list__title-accent {
+    flex-shrink: 0;
+    width: 8px;
+    height: 40px;
+    background-color: #000000;
+    border-radius: 1px;
+}
+
+.attendance-list__heading {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000000;
+    white-space: nowrap;
+}
+
+/* 月次ナビ（900×60・白・角丸10） */
+.month-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    margin: 0 0 40px;
+    padding: 0 24px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.month-nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1;
+    color: #737373;
+    text-decoration: none;
+}
+
+.month-nav__link:hover {
+    opacity: 0.85;
+}
+
+.month-nav__arrow {
+    display: block;
+    width: 20px;
+    height: auto;
+    flex-shrink: 0;
+    opacity: 0.3;
+}
+
+/* 翌月：右向き矢印（同じ画像を反転） */
+.month-nav__arrow--next {
+    transform: scaleX(-1);
+}
+
+.month-nav__current {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 25px;
+}
+
+.month-nav__calendar-icon {
+    display: block;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.month-nav__current-text {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    color: #000000;
+}
+
+/* テーブル枠（月ナビと同幅・角丸・白／高さは行数に合わせる） */
+.attendance-list__table {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.attendance-list__table-inner {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 16px;
+}
+
+/* ヘッダー行：高さ 36px（データ行と同じ）・縦線なし・下線のみ 2px・文字 #737373 Bold 16px */
+.attendance-list__table-header .attendance-list__table-row {
+    height: 36px;
+}
+
+.attendance-list__table-header .attendance-list__table-cell {
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 6px;
+    border: none;
+    border-bottom: 2px solid #e1e1e1;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    color: #737373;
+    background-color: #ffffff;
+    vertical-align: middle;
+    text-align: left;
+}
+
+/* 列幅：テーブル左306px基準の各列左端（363,552,685…）から算出 → 合計900px */
+/* 1列目: 306〜552 = 246px（テキスト起点363のため左パディング57px） */
+.attendance-list__table-header .attendance-list__table-cell:nth-child(1),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(1) {
+    width: 246px;
+    padding-left: 57px;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(2),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(2) {
+    width: 133px;
+    text-align: center;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(3),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(3) {
+    width: 133px;
+    text-align: center;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(4),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(4) {
+    width: 133px;
+    text-align: center;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(5),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(5) {
+    width: 133px;
+    text-align: center;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(6),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(6) {
+    width: 122px;
+    text-align: center;
+}
+
+/* 勤怠データ行：高さ 36px・行間は 2px 横罫線・本文 Bold 16px #737373 */
+.attendance-list__table-body .attendance-list__table-row {
+    height: 36px;
+}
+
+.attendance-list__table-body .attendance-list__table-cell {
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 6px;
+    border: none;
+    border-bottom: 2px solid #e1e1e1;
+    background-color: #ffffff;
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    color: #737373;
+}
+
+/* 1 列目は左 57px（ヘッダーと揃える） */
+.attendance-list__table-body .attendance-list__table-cell:nth-child(1) {
+    padding: 0 6px 0 57px;
+}
+
+/* 「詳細」リンクのみ黒 */
+.attendance-list__table-body .detail-link {
+    font-weight: 700;
+    font-size: 16px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.detail-link:hover {
+    text-decoration: underline;
+}
+
+/* PC 幅 1400–1540px（デザイン幅 1512px 付近で余白・文字サイズを微調整） */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .attendance-list {
+        padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px) clamp(48px, 6vw, 80px);
+    }
+
+    .attendance-list__header {
+        margin-bottom: clamp(32px, 3.5vw, 47px);
+    }
+
+    .attendance-list__heading {
+        font-size: clamp(26px, 2.1vw, 30px);
+        line-height: clamp(30px, 2.5vw, 36px);
+    }
+
+    .month-nav {
+        height: clamp(54px, 4.5vw, 60px);
+        margin-bottom: clamp(28px, 3.2vw, 40px);
+        padding: 0 clamp(16px, 2vw, 24px);
+    }
+
+    .month-nav__link {
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .month-nav__arrow {
+        width: clamp(18px, 1.5vw, 20px);
+    }
+
+    .month-nav__calendar-icon {
+        width: clamp(20px, 1.65vw, 22px);
+        height: clamp(20px, 1.65vw, 22px);
+    }
+
+    .month-nav__current-text {
+        font-size: clamp(18px, 1.45vw, 20px);
+        line-height: clamp(22px, 1.8vw, 25px);
+    }
+
+    .attendance-list__table-inner {
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .attendance-list__table-header .attendance-list__table-cell,
+    .attendance-list__table-body .attendance-list__table-cell {
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .attendance-list__table-body .detail-link {
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+}
+
+@media (max-width: 900px) {
+    .attendance-list__table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .month-nav {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 60px;
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .month-nav__current {
+        order: -1;
+        width: 100%;
+        justify-content: center;
+    }
+}
