@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StampCorrectionRequestController;
+use App\Http\Controllers\AttendanceDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/attendance/rest-end', [AttendanceController::class, 'restEnd'])->name('attendance.rest-end');
     Route::get('/attendance/list', [AttendanceController::class, 'list'])->name('attendance.list');
     Route::get('/stamp_correction_request/list', [StampCorrectionRequestController::class, 'index'])->name('stamp_correction_request.list');
-    Route::get('/attendance/detail/{id}', [AttendanceController::class, 'show'])->name('attendance.detail');
+    Route::get('/attendance/detail/{id}', [AttendanceDetailController::class, 'show'])->name('attendance.detail');
+    Route::post('/attendance/detail/{id}', [AttendanceDetailController::class, 'update'])->name('attendance.update');
 
     
 
