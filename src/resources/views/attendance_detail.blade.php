@@ -20,6 +20,7 @@
                 </tr>
                 <tr>
                     <th>日付</th>
+                    <input type="hidden" name="date" value="{{ $attendance->date->format('Y-m-d') }}">
                     <td><span class="attendance-detail__date">
                         {{ $attendance->date->format('Y') }}年
                         {{ $attendance->date->format('n') }}月{{ $attendance->date->format('j') }}日
