@@ -23,6 +23,21 @@
 }
 
 /* タイトル・月ナビ・テーブルを同じ 900px 幅で中央揃え（左端を一致） */
+/* 修正申請完了など（勤怠登録の成功メッセージに近い色味） */
+.attendance-list__message {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 0 24px;
+    font-size: 16px;
+    text-align: center;
+    color: #000000;
+    letter-spacing: 0.15em;
+}
+.attendance-list__message--success {
+    color: #2563eb;
+}
+
 .attendance-list__header,
 .month-nav,
 .attendance-list__table {

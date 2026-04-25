@@ -10,6 +10,9 @@
         <span class="attendance-list__title-accent" aria-hidden="true"></span>
         <h1 class="attendance-list__heading">勤怠一覧</h1>
     </div>
+    @if (session('success'))
+        <p class="attendance-list__message attendance-list__message--success" role="status">{{ session('success') }}</p>
+    @endif
     <nav class="month-nav" aria-label="月の切り替え">
         <a href="{{ route('attendance.list', ['month' => $prevMonth]) }}" class="month-nav__link month-nav__link--prev">
             <img src="{{ asset('images/logo/arrow.png') }}" alt="" class="month-nav__arrow month-nav__arrow--prev" width="20" height="20">

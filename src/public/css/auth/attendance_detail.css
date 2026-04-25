@@ -1,0 +1,578 @@
+/* 勤怠詳細：ページ背景 */
+.content:has(.attendance-detail) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    flex: 1;
+    background-color: #f0eff2;
+}
+
+.attendance-detail {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: 89px 20px 80px;
+    letter-spacing: 0.15em;
+}
+
+/* タイトル行：左アクセント + 「勤怠詳細」 */
+.attendance-detail__header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto 55px;
+    padding: 0;
+}
+
+.attendance-detail__title-accent {
+    display: block;
+    flex: 0 0 auto;
+    width: 0;
+    height: 40px;
+    border-left: 8px solid #000000;
+    background: none;
+    opacity: 1;
+}
+
+.attendance-detail__heading {
+    box-sizing: border-box;
+    flex: 0 1 auto;
+    min-width: 0;
+    min-height: 36px;
+    margin: 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000000;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+}
+
+/* メイン枠 900 / 中身は下のカード */
+.attendance-detail__body {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+}
+
+/* 白いテーブルカード: 基準 900×449 / 枠 1px / 角 10
+ * 内側の有効高さを 6 等分した「行の目安高さ」で横罫線の間隔をそろえる（行数は変動するがゆったり基準） */
+.attendance-detail__card {
+    --card-border: 1px;
+    --card-outer-h: 449px;
+    --card-inner-h: calc(var(--card-outer-h) - 2 * var(--card-border));
+    --row-gap-unit: calc(var(--card-inner-h) / 6);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    min-height: var(--card-outer-h);
+    border: var(--card-border) solid #e1e1e1;
+    border-radius: 10px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+/* 表の最終行（備考）の下線はカード下端のため付けない */
+.attendance-detail__table tbody tr.attendance-detail__table-tr--remark th,
+.attendance-detail__table tbody tr.attendance-detail__table-tr--remark td {
+    border-bottom: none;
+}
+
+/* 成功メッセージ（カード内） */
+.attendance-detail__message {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px 24px 0;
+    font-size: 16px;
+    text-align: center;
+    color: #000000;
+    letter-spacing: 0.15em;
+}
+
+.attendance-detail__message--success {
+    color: #2563eb;
+}
+
+.attendance-detail__form {
+    margin: 0;
+}
+
+/* デザイン: th左端≈370 / td左端≈663 → 列幅 293px。th 左パディング 64px 相当 */
+/* th: Bold 16px #737373 / td: Bold 16px #000 / 字間 15% */
+.attendance-detail__table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* 6 等分基準の行高（最低）。行が増えた場合はカードの min-height 以上に自然に伸びる */
+.attendance-detail__table tbody tr:not(.attendance-detail__table-tr--remark) {
+    min-height: var(--row-gap-unit, 75px);
+}
+
+/* 横罫線: 1px（カード枠と同系色）等間隔感を優先。最下行は下線なし */
+.attendance-detail__table tbody tr:not(.attendance-detail__table-tr--remark) th,
+.attendance-detail__table tbody tr:not(.attendance-detail__table-tr--remark) td {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.attendance-detail__table th,
+.attendance-detail__table td {
+    box-sizing: border-box;
+    min-height: var(--row-gap-unit, 75px);
+    padding: 1.1rem 0;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+/* 最下段 備考：他行と同じ th 左 64 / td 左 64・右 24（padding の一括指定で消えないよう縦横を明示） */
+.attendance-detail__table tbody tr.attendance-detail__table-tr--remark {
+    min-height: var(--row-gap-unit, 75px);
+}
+
+.attendance-detail__table tbody tr.attendance-detail__table-tr--remark th {
+    min-height: var(--row-gap-unit, 75px);
+    padding: 1.1rem 0 1.1rem 64px;
+    vertical-align: middle;
+}
+
+.attendance-detail__table tbody tr.attendance-detail__table-tr--remark td {
+    min-height: var(--row-gap-unit, 75px);
+    padding: 1.1rem 24px 1.1rem 64px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* カード左306 + th 左64 = 表ラベル付近370 / td 左は 306+293+64=663 */
+.attendance-detail__table th {
+    width: 293px;
+    max-width: 293px;
+    padding-left: 64px;
+    padding-right: 0;
+    text-align: left;
+    color: #737373;
+    font-weight: 700;
+}
+
+.attendance-detail__table td {
+    text-align: left;
+    color: #000000;
+    font-weight: 700;
+    padding-left: 64px;
+    padding-right: 24px;
+}
+
+/* 日付: 「年」と「月日」のあいだ 210px */
+.attendance-detail__date {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 210px;
+    row-gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 0.15em;
+    text-align: left;
+    width: auto;
+    max-width: 100%;
+}
+
+/* 出退勤・休憩：2つの時間 input のあいだ 210px 幅で中央に 〜 */
+.attendance-detail__time-input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    max-width: 100%;
+}
+
+/* width 103, height 28, border 1px #E1E1E1, radius 4 */
+.attendance-detail__table td .input-time,
+.attendance-detail__table td input.input-time,
+.attendance-detail__table td input[type="text"].input-time {
+    box-sizing: border-box;
+    width: 103px;
+    max-width: 100%;
+    height: 28px;
+    margin: 0;
+    padding: 2px 6px;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    background-color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    line-height: 1.2;
+    text-align: center;
+    color: #000000;
+}
+
+/* 他の text input（.input-time なし）も同寸法に揃えない: 上記 .input-time のみ */
+.attendance-detail__time-between {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 210px;
+    width: 210px;
+    max-width: 100%;
+    min-height: 28px;
+    align-items: center;
+    justify-content: center;
+}
+
+.attendance-detail__time-between--static {
+    flex: 0 0 210px;
+    width: 210px;
+    min-height: auto;
+}
+
+.attendance-detail__tilde {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 0.15em;
+    line-height: 1;
+}
+
+/* 承認待ち: 出退のテキスト用 */
+.attendance-detail__time-text {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 0.15em;
+}
+
+.attendance-detail__time-hhmm {
+    display: inline-block;
+}
+
+/* 承認待ち：休憩を出退勤と同じ 時刻〜時刻（複数は縦並び・行間広め） */
+.attendance-detail__rest-readonly-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.attendance-detail__rest-readonly-row {
+    flex-wrap: nowrap;
+}
+
+/* 承認待ち・休憩が複数行のとき上揃え（行高は等分基準のままゆったり） */
+.attendance-detail--readonly tr:has(.attendance-detail__rest-readonly-list) th,
+.attendance-detail--readonly tr:has(.attendance-detail__rest-readonly-list) td {
+    vertical-align: top;
+    padding-top: 1.15rem;
+    padding-bottom: 1.15rem;
+}
+
+/* 316×高さ, border 1px #D9D9D9, radius 4（行高に馴染む高さ） */
+.attendance-detail__table td textarea {
+    box-sizing: border-box;
+    display: block;
+    width: 316px;
+    max-width: 100%;
+    height: 70px;
+    min-height: 70px;
+    margin: 0;
+    padding: 6px 8px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    background-color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.15em;
+    color: #000000;
+    resize: vertical;
+}
+
+.attendance-detail__user-name {
+    display: inline-block;
+    text-align: left;
+    width: auto;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 0.15em;
+}
+
+.attendance-detail--readonly .attendance-detail__user-name,
+.attendance-detail--readonly .attendance-detail__date,
+.attendance-detail--readonly .attendance-detail__table td {
+    text-align: left;
+}
+
+/* 承認待ち注釈（白カード枠外・右下。900px カラム内で右揃え） */
+.attendance-detail--readonly .attendance-detail__pending-notice {
+    box-sizing: border-box;
+    align-self: flex-end;
+    width: auto;
+    max-width: 100%;
+    margin: 10px 0 0;
+    padding: 0;
+    color: #dc2626;
+    font-size: 14px;
+    line-height: 1.45;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    text-align: right;
+}
+
+/* 修正ボタン：表枠外 / 130×50 / 角5 / #000 / 白文字 Bold 22px */
+.attendance-detail__body > .attendance-detail__button {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 100%;
+    margin: 24px 0 0;
+    padding: 0;
+    opacity: 1;
+}
+
+.attendance-detail__button-submit {
+    box-sizing: border-box;
+    width: 130px;
+    height: 50px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.attendance-detail__button-submit:hover {
+    opacity: 0.88;
+}
+
+.attendance-detail__button-submit:focus-visible {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+}
+
+/* focus リング用（input/textarea） */
+.attendance-detail__table td .input-time:focus,
+.attendance-detail__table td input.input-time:focus {
+    outline: 2px solid #000000;
+    outline-offset: 1px;
+}
+
+.attendance-detail__table td textarea:focus {
+    outline: 2px solid #000000;
+    outline-offset: 1px;
+}
+
+/* 勤怠詳細：バリデーションエラー */
+.attendance-detail__error-summary {
+    box-sizing: border-box;
+    margin: 20px 24px 16px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #f87171;
+    border-radius: 6px;
+    background-color: #fef2f2;
+    color: #991b1b;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.attendance-detail__error-message {
+    display: block;
+    margin: 0.5rem 0 0;
+    color: #dc2626;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.attendance-detail__error-message--field {
+    margin-top: 0.35rem;
+}
+
+/* PC 幅 1400–1540px（1512px 付近で余白・タイポを微調整） */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .attendance-detail {
+        padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px) clamp(48px, 6vw, 80px);
+    }
+
+    .attendance-detail__header {
+        margin-bottom: clamp(36px, 3.8vw, 55px);
+    }
+
+    .attendance-detail__heading {
+        font-size: clamp(26px, 2.1vw, 30px);
+        line-height: clamp(30px, 2.5vw, 36px);
+    }
+
+    .attendance-detail__title-accent {
+        height: clamp(36px, 3vw, 40px);
+    }
+
+    .attendance-detail__message {
+        font-size: clamp(14px, 1.2vw, 16px);
+        padding: clamp(16px, 1.8vw, 20px) clamp(16px, 2vw, 24px) 0;
+    }
+
+    .attendance-detail__card {
+        min-height: clamp(400px, 32vw, 449px);
+        border-radius: clamp(8px, 0.75vw, 10px);
+    }
+
+    .attendance-detail__table th,
+    .attendance-detail__table td {
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .attendance-detail__date {
+        column-gap: clamp(120px, 15vw, 210px);
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .attendance-detail__table td .input-time,
+    .attendance-detail__table td input.input-time,
+    .attendance-detail__table td input[type="text"].input-time {
+        width: clamp(92px, 8.2vw, 103px);
+        height: clamp(26px, 2.2vw, 28px);
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .attendance-detail__time-between,
+    .attendance-detail__time-between--static {
+        flex: 0 0 clamp(140px, 15.5vw, 210px);
+        width: clamp(140px, 15.5vw, 210px);
+    }
+
+    .attendance-detail__tilde,
+    .attendance-detail__time-text,
+    .attendance-detail__time-hhmm {
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .attendance-detail__table td textarea {
+        width: clamp(260px, 22vw, 316px);
+        height: clamp(60px, 5.8vw, 70px);
+        min-height: clamp(60px, 5.8vw, 70px);
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .attendance-detail--readonly .attendance-detail__rest-readonly-list {
+        gap: clamp(1.5rem, 2.2vw, 2rem);
+    }
+
+    .attendance-detail--readonly .attendance-detail__pending-notice {
+        font-size: clamp(12px, 1.05vw, 14px);
+    }
+
+    .attendance-detail__body > .attendance-detail__button {
+        margin-top: clamp(18px, 2vw, 24px);
+    }
+
+    .attendance-detail__button-submit {
+        width: clamp(118px, 10.5vw, 130px);
+        height: clamp(46px, 4.2vw, 50px);
+        font-size: clamp(19px, 1.7vw, 22px);
+    }
+}
+
+/* 小さい画面 */
+@media (max-width: 900px) {
+    .attendance-detail__date {
+        column-gap: min(210px, 8vw);
+    }
+
+    .attendance-detail__time-between,
+    .attendance-detail__time-between--static {
+        flex: 1 1 100px;
+        width: min(210px, 100%);
+        min-width: 0;
+    }
+
+    .attendance-detail__time-input {
+        row-gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .attendance-detail {
+        padding: 48px 16px 64px;
+    }
+
+    .attendance-detail__card {
+        min-height: 0;
+    }
+
+    .attendance-detail__table th,
+    .attendance-detail__table td {
+        display: block;
+        width: 100% !important;
+        min-height: 0;
+        border-bottom: 1px solid #e1e1e1;
+        padding: 12px 16px;
+    }
+
+    .attendance-detail__table th {
+        padding-left: 16px;
+        max-width: none;
+    }
+
+    .attendance-detail__table tr:not(:last-child) th,
+    .attendance-detail__table tr:not(:last-child) td {
+        border-bottom: none;
+    }
+
+    .attendance-detail__table tr:not(:last-child) {
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .attendance-detail__table th {
+        padding-top: 16px;
+        padding-bottom: 4px;
+    }
+
+    .attendance-detail__table td {
+        padding-top: 4px;
+        padding-bottom: 16px;
+    }
+
+    .attendance-detail__date {
+        flex-direction: column;
+        row-gap: 4px;
+        column-gap: 0;
+    }
+
+    .attendance-detail__time-between,
+    .attendance-detail__time-between--static {
+        flex: 0 0 auto;
+        width: 100%;
+        min-height: 1.5rem;
+    }
+}
