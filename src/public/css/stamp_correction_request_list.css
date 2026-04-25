@@ -1,0 +1,341 @@
+/* 申請一覧（背景は勤怠一覧と同じ #F0EFF2） */
+
+.content:has(.stamp-correction-list) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f0eff2;
+    flex: 1;
+    width: 100%;
+}
+
+.stamp-correction-list {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: 89px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    letter-spacing: 0.15em;
+}
+
+/* 勤怠一覧と同様：左アクセント + 見出し */
+.stamp-correction-list__header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 0 47px;
+    padding: 0;
+}
+
+.stamp-correction-list__title-accent {
+    flex-shrink: 0;
+    width: 8px;
+    height: 40px;
+    background-color: #000000;
+    border-radius: 1px;
+}
+
+.stamp-correction-list__heading {
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000000;
+    white-space: nowrap;
+}
+
+/* タブ: 承認待ち left 359 = 主領域左 306+53 相当。タブ 72×19 相当、2つ目は +178px 間隔 */
+/* 承認待ち(359) + 幅72 = 431、承認済み左537 → 隙間 106px */
+.stamp-correction-list__tabs {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 0 0;
+    padding: 0 0 0 53px;
+    box-sizing: border-box;
+}
+
+.stamp-correction-list__tab-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 106px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.stamp-correction-list__tab-item {
+    margin: 0;
+    padding: 0;
+}
+
+/* Bold 16px, 字間 15% */
+.stamp-correction-list__tab-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 72px;
+    min-height: 19px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    color: #737373;
+    box-sizing: border-box;
+    padding: 0 0 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.stamp-correction-list__tab-link:hover {
+    color: #000000;
+    opacity: 0.9;
+}
+
+.stamp-correction-list__tab-link.is-active {
+    color: #000000;
+}
+
+/* 幅 900・高さ0相当の 1px 下線 #000 */
+.stamp-correction-list__tab-rule {
+    width: 100%;
+    max-width: 900px;
+    height: 0;
+    margin: 0 0 24px;
+    border: 0;
+    border-top: 1px solid #000000;
+    opacity: 1;
+    flex-shrink: 0;
+}
+
+/* 白いテーブル枠: 幅 900・角 10。行が少ない・データがないときは下の余白を出さない（高さは中身任せ） */
+.stamp-correction-list__table {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #e1e1e1;
+    border-width: 0;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.stamp-correction-list__table-inner {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* 横分割のみ。＜th＞下は勤怠一覧のヘッダー扱い: 3px。データ行: 2px。折り返しなし＝1行＋はみ出しは省略 */
+.stamp-correction-list__table-header .stamp-correction-list__table-row,
+.stamp-correction-list__table-body .stamp-correction-list__table-row {
+    height: 36px;
+}
+
+.stamp-correction-list__table-header .stamp-correction-list__table-cell {
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 6px;
+    border: none;
+    border-bottom: 3px solid #e1e1e1;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    color: #737373;
+    background-color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    max-width: 0;
+}
+
+/* ＜th＞と同系: Bold 16px #737373・字間 15%。「詳細」リンクのみ下記 .stamp-correction-list__table-link で #000 */
+.stamp-correction-list__table-body .stamp-correction-list__table-cell {
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 6px;
+    border: none;
+    border-bottom: 2px solid #e1e1e1;
+    background-color: #ffffff;
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    color: #737373;
+    text-align: center;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    max-width: 0;
+}
+
+.stamp-correction-list__table-body tr:last-child .stamp-correction-list__table-cell {
+    border-bottom: none;
+}
+
+/* 列幅（合計 900px・table-layout: fixed で配分、セル折り返し抑止用に max-width: 0 継続） */
+.stamp-correction-list__table-header .stamp-correction-list__table-cell:nth-child(1),
+.stamp-correction-list__table-body .stamp-correction-list__table-cell:nth-child(1) {
+    width: 12%;
+    text-align: center;
+}
+
+.stamp-correction-list__table-header .stamp-correction-list__table-cell:nth-child(2),
+.stamp-correction-list__table-body .stamp-correction-list__table-cell:nth-child(2) {
+    width: 16%;
+}
+
+.stamp-correction-list__table-header .stamp-correction-list__table-cell:nth-child(3),
+.stamp-correction-list__table-body .stamp-correction-list__table-cell:nth-child(3) {
+    width: 16%;
+}
+
+.stamp-correction-list__table-header .stamp-correction-list__table-cell:nth-child(4),
+.stamp-correction-list__table-body .stamp-correction-list__table-cell:nth-child(4) {
+    width: 25%;
+    padding: 0 8px;
+}
+
+.stamp-correction-list__table-header .stamp-correction-list__table-cell:nth-child(5),
+.stamp-correction-list__table-body .stamp-correction-list__table-cell:nth-child(5) {
+    width: 16%;
+}
+
+.stamp-correction-list__table-header .stamp-correction-list__table-cell:nth-child(6),
+.stamp-correction-list__table-body .stamp-correction-list__table-cell:nth-child(6) {
+    width: 15%;
+}
+
+/* テーブル内で #000 になるのは「詳細」のみ */
+.stamp-correction-list__table-link {
+    display: block;
+    width: 100%;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    color: #000000;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stamp-correction-list__table-link:hover {
+    text-decoration: underline;
+}
+
+/* PC 幅 1400–1540px（デザイン幅 1512px 付近で余白・タイポ・タブ・表行高を微調整） */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .stamp-correction-list {
+        padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px) clamp(48px, 6vw, 80px);
+    }
+
+    .stamp-correction-list__header {
+        gap: clamp(10px, 0.95vw, 13px);
+        margin-bottom: clamp(32px, 3.5vw, 47px);
+    }
+
+    .stamp-correction-list__heading {
+        font-size: clamp(26px, 2.1vw, 30px);
+        line-height: clamp(30px, 2.5vw, 36px);
+    }
+
+    .stamp-correction-list__title-accent {
+        width: clamp(6px, 0.55vw, 8px);
+        height: clamp(36px, 3vw, 40px);
+    }
+
+    .stamp-correction-list__tabs {
+        padding-left: clamp(40px, 4.2vw, 53px);
+    }
+
+    .stamp-correction-list__tab-list {
+        gap: clamp(64px, 7.5vw, 106px);
+    }
+
+    .stamp-correction-list__tab-link {
+        font-size: clamp(14px, 1.2vw, 16px);
+        min-width: clamp(64px, 5.5vw, 72px);
+        min-height: clamp(18px, 1.4vw, 19px);
+        line-height: clamp(18px, 1.4vw, 19px);
+        padding-bottom: clamp(8px, 1vw, 12px);
+    }
+
+    .stamp-correction-list__tab-rule {
+        margin-bottom: clamp(16px, 2vw, 24px);
+    }
+
+    .stamp-correction-list__table {
+        border-radius: clamp(8px, 0.75vw, 10px);
+    }
+
+    /* 表：行高をフォントに合わせて 32–36px の範囲でスケール（1 行表示を維持） */
+    .stamp-correction-list__table-header .stamp-correction-list__table-row,
+    .stamp-correction-list__table-body .stamp-correction-list__table-row {
+        height: clamp(32px, 2.85vw, 36px);
+    }
+
+    .stamp-correction-list__table-header .stamp-correction-list__table-cell,
+    .stamp-correction-list__table-body .stamp-correction-list__table-cell {
+        height: clamp(32px, 2.85vw, 36px);
+        line-height: clamp(32px, 2.85vw, 36px);
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .stamp-correction-list__table-inner {
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .stamp-correction-list__table-link {
+        font-size: clamp(14px, 1.2vw, 16px);
+        line-height: clamp(32px, 2.85vw, 36px);
+    }
+}
+
+@media (max-width: 900px) {
+    .stamp-correction-list {
+        padding: 48px 16px 64px;
+    }
+
+    .stamp-correction-list__tabs {
+        padding-left: 0;
+    }
+
+    .stamp-correction-list__tab-list {
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .stamp-correction-list__table {
+        overflow-x: auto;
+    }
+
+    .stamp-correction-list__table-inner {
+        min-width: 720px;
+    }
+}

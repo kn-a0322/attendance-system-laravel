@@ -157,7 +157,7 @@
     font-size: 16px;
 }
 
-/* ヘッダー行：高さ 36px（データ行と同じ）・縦線なし・下線のみ 2px・文字 #737373 Bold 16px */
+/* ヘッダー行：高さ 36px（データ行と同じ）・縦線なし・下線のみ 3px・文字 #737373 Bold 16px */
 .attendance-list__table-header .attendance-list__table-row {
     height: 36px;
 }
@@ -167,7 +167,7 @@
     height: 36px;
     padding: 0 6px;
     border: none;
-    border-bottom: 2px solid #e1e1e1;
+    border-bottom: 3px solid #e1e1e1;
     font-weight: 700;
     font-size: 16px;
     line-height: 36px;
@@ -258,6 +258,7 @@
     }
 
     .attendance-list__header {
+        gap: clamp(10px, 0.95vw, 13px);
         margin-bottom: clamp(32px, 3.5vw, 47px);
     }
 
@@ -301,6 +302,29 @@
 
     .attendance-list__table-body .detail-link {
         font-size: clamp(14px, 1.2vw, 16px);
+        line-height: clamp(32px, 2.85vw, 36px);
+    }
+
+    /* タイトル左アクセント（申請一覧と同様に微調整） */
+    .attendance-list__title-accent {
+        width: clamp(6px, 0.55vw, 8px);
+        height: clamp(36px, 3vw, 40px);
+    }
+
+    /* 表行高を 1400–1540px で少し詰める */
+    .attendance-list__table-header .attendance-list__table-row,
+    .attendance-list__table-body .attendance-list__table-row {
+        height: clamp(32px, 2.85vw, 36px);
+    }
+
+    .attendance-list__table-header .attendance-list__table-cell,
+    .attendance-list__table-body .attendance-list__table-cell {
+        height: clamp(32px, 2.85vw, 36px);
+        line-height: clamp(32px, 2.85vw, 36px);
+    }
+
+    .attendance-list__table {
+        border-radius: clamp(8px, 0.75vw, 10px);
     }
 }
 

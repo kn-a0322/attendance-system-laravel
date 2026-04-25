@@ -16,13 +16,13 @@ class StampCorrectionRequestController extends Controller
         //0:承認待ちを取得
         $pendingRequests = CorrectionRequest::where('user_id', $user->id)
         ->where('status', 0)
-        ->with(['attendance', 'detail'])
+        ->with(['user', 'attendance', 'detail'])
         ->get();
 
         //1:承認済みを取得
         $approvedRequests = CorrectionRequest::where('user_id', $user->id)
         ->where('status', 1)
-        ->with(['attendance', 'detail'])
+        ->with(['user', 'attendance', 'detail'])
         ->get();
         
         return view('stamp_correction_request_list', compact('pendingRequests', 'approvedRequests'));
