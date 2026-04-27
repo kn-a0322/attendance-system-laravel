@@ -178,6 +178,8 @@
         </table>
         </div>
         <div class="attendance-detail__button">
+            <!--@if(Auth::user()->role == 1)-->
+                <form action ="{{ route('admin
             <button type="submit" class="attendance-detail__button-submit">修正</button>
         </div>
     </div>
