@@ -55,18 +55,33 @@ class Attendance extends Model
     /*休憩時間の合計を取得（アクセサ名 → $attendance->total_rest_time）*/
     public function getTotalRestTimeAttribute(): string
     {
-        $dateStr = $this->date->format('Y-m-d');
+        if($this->rests->isEmpty()) {
+            return '';
+        }
+        
         $totalMinutes = 0;
+        $hasCompletedRest = false;//休憩が終了しているかどうかをチェック
+
         foreach ($this->rests as $rest) {
-            if ($rest->rest_start && $rest->rest_end) {
-                $start = Carbon::parse($dateStr . ' ' . $this->toTimeStr($rest->rest_start));
-                $end = Carbon::parse($dateStr . ' ' . $this->toTimeStr($rest->rest_end));
-                if ($end->lessThan($start)) {
-                    $end->addDay();
+            if (!empty($rest->rest_start) && !empty($rest->rest_end)) {
+                try {
+                    $start = Carbon::parse($rest->rest_start);
+                    $end = Carbon::parse($rest->rest_end);
+                    if ($end->lessThan($start)) {
+                        $end->addDay();
+                    }
+                    $totalMinutes += $start->diffInMinutes($end);
+                    $hasCompletedRest = true;
+                } catch (\Exception $e) {
+                    continue;
                 }
-                $totalMinutes += $start->diffInMinutes($end);
             }
         }
+        //休憩が終了していない場合は空文字を返す
+        if(!$hasCompletedRest) {
+            return '';
+        }
+
         $hours = intdiv($totalMinutes, 60);
         $minutes = $totalMinutes % 60;
 

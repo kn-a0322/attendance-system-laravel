@@ -16,7 +16,7 @@ class AdminAttendanceController extends Controller
         $currentDate = \Carbon\Carbon::parse($date);
         
         //その日の全ユーザーの勤怠を取得
-        $attendances = Attendance::with('user')
+        $attendances = Attendance::with(['user', 'rests'])
         ->whereDate('date', $date)->get();
 
         $prevDate = $currentDate->copy()->subDay()->format('Y-m-d');

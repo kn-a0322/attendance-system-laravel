@@ -12,7 +12,7 @@ class AttendanceController extends Controller
     public function index()
     {
         /*今日の自分のレコードを取得*/
-        $attendance = Attendance::today(auth()->id())->first();
+        $attendance = Attendance::with('rests')->today(auth()->id())->first();
 
         /*今日のレコードが存在しない=「出勤を押していない」＝勤務外０*/
         if (!$attendance) {

@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/attendance_list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin_attendance_list.css') }}">
 @endsection
 
 @section('content')
@@ -10,8 +11,7 @@
         <span class="admin-attendance-list__title-accent" aria-hidden="true"></span>
         <h1 class="admin-attendance-list__heading">{{ $currentDate->format('Y年m月d日') }}の勤怠</h1>
     </div>
-</div>
-    <nav class="date-nav" aria-label="日の切り替え"> 
+    <nav class="date-nav" aria-label="日の切り替え">
         <a href="{{ route('admin.attendance.list', ['date' => $prevDate]) }}" class="date-nav__link date-nav__link--prev">
             <img src="{{ asset('images/logo/arrow.png') }}" alt="" class="date-nav__arrow date-nav__arrow--prev" width="20" height="20">
             <span>前日</span>
@@ -29,12 +29,12 @@
         <table class="attendance-list__table-inner">
             <thead class="attendance-list__table-header">
                 <tr class="attendance-list__table-row">
-                    <th class="attendance-list__table-cell">名前</th>
-                    <th class="attendance-list__table-cell">出勤</th>
-                    <th class="attendance-list__table-cell">退勤</th>
-                    <th class="attendance-list__table-cell">休憩</th>
-                    <th class="attendance-list__table-cell">合計</th>
-                    <th class="attendance-list__table-cell">詳細</th>
+                    <th class="attendance-list__table-cell" scope="col">名前</th>
+                    <th class="attendance-list__table-cell" scope="col">出勤</th>
+                    <th class="attendance-list__table-cell" scope="col">退勤</th>
+                    <th class="attendance-list__table-cell" scope="col">休憩</th>
+                    <th class="attendance-list__table-cell" scope="col">合計</th>
+                    <th class="attendance-list__table-cell" scope="col">詳細</th>
                 </tr>
             </thead>
             <tbody class="attendance-list__table-body">
@@ -57,4 +57,5 @@
             </tbody>
         </table>
     </div>
+</div>
 @endsection
