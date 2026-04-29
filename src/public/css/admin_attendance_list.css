@@ -59,6 +59,17 @@
     color: #000000;
 }
 
+.admin-attendance-list__flash-message {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 0 16px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.4;
+    color: #2563eb;
+}
+
 /* 日付ナビ＝月ナビ（.month-nav）と同仕様 */
 .date-nav {
     display: flex;

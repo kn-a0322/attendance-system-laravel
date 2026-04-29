@@ -11,6 +11,11 @@
         <span class="admin-attendance-list__title-accent" aria-hidden="true"></span>
         <h1 class="admin-attendance-list__heading">{{ $currentDate->format('Y年m月d日') }}の勤怠</h1>
     </div>
+    @if (session('success'))
+        <p class="admin-attendance-list__flash-message" role="status">
+            {{ session('success') }}
+        </p>
+    @endif
     <nav class="date-nav" aria-label="日の切り替え">
         <a href="{{ route('admin.attendance.list', ['date' => $prevDate]) }}" class="date-nav__link date-nav__link--prev">
             <img src="{{ asset('images/logo/arrow.png') }}" alt="" class="date-nav__arrow date-nav__arrow--prev" width="20" height="20">
