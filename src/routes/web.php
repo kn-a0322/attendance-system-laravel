@@ -6,6 +6,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StampCorrectionRequestController;
 use App\Http\Controllers\AttendanceDetailController;
 use App\Http\Controllers\Admin\AdminAttendanceController;
+use App\Http\Controllers\AdminStaffController;
 
 /*
 |--------------------------------------------------------------------------
