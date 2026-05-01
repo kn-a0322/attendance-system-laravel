@@ -18,21 +18,32 @@ class AttendancesTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        $userIds = [1, 2];
+        $months = ['2026-04', '2026-05', '2026-06'];
 
-        foreach([1, 2] as $user_id) {
-            foreach(range(1, 30) as $date) {
-                $dateString = "2026-04-{$date}";
-                $dayOfWeek = date('w', strtotime($dateString));/*曜日を取得*/
-                if($dayOfWeek == 0 || $dayOfWeek == 6) {/*土日はスキップ*/
-                    continue;
+        foreach($userIds as $user_id) {
+            foreach($months as $month) {
+
+                //月の初日を取得
+                $startOfMonth = \Carbon\Carbon::parse($month)->startOfMonth();
+                //月の日数を取得
+                $daysInMonth = $startOfMonth->daysInMonth;
+
+                for($day = 0; $day < $daysInMonth; $day++) {
+                    $currentDate = $startOfMonth->copy()->addDays($day);
+
+                    if($currentDate->isWeekend()) {
+                        continue;
+                    }
+
+                    Attendance::factory()
+                    ->has(Rest::factory()->count(rand(1, 2)))
+                    ->create([
+                        'user_id' => $user_id,
+                        'date' => $currentDate->format('Y-m-d'),
+                    ]);
                 }
-                Attendance::factory()
-                ->has(Rest::factory()->count(rand(1, 2)))
-                ->create([ 
-                    'user_id' => $user_id, 
-                    'date' => $dateString
-                ]);
             }
         }
     }
