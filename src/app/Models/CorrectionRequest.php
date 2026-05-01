@@ -12,7 +12,7 @@ class CorrectionRequest extends Model
     protected $fillable = [
         'attendance_id',
         'user_id',
-        'admin_id',
+        'approved_by',
         'status',
         'approved_at',
     ];
@@ -28,7 +28,7 @@ class CorrectionRequest extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     
     public function approvedBy()

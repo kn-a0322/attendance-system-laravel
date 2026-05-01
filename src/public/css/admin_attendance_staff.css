@@ -1,0 +1,367 @@
+/* 管理者 スタッフ別勤怠一覧 */
+
+.content:has(.admin-attendance-staff) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f0eff2;
+    flex: 1;
+    width: 100%;
+}
+
+.admin-attendance-staff {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: 89px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    letter-spacing: 0.15em;
+}
+
+.admin-attendance-staff__header,
+.month-nav,
+.attendance-list__table,
+.csv-export {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+}
+
+.admin-attendance-staff__header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 47px;
+}
+
+.admin-attendance-staff__title-accent {
+    flex-shrink: 0;
+    width: 8px;
+    height: 40px;
+    background-color: #000000;
+    border-radius: 1px;
+}
+
+.admin-attendance-staff__heading {
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000000;
+}
+
+/* attendance_list と同仕様の月ナビ */
+.month-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    margin: 0 0 40px;
+    padding: 0 24px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.month-nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1;
+    color: #737373;
+    text-decoration: none;
+}
+
+.month-nav__link:hover {
+    opacity: 0.85;
+}
+
+.month-nav__arrow {
+    display: block;
+    width: 20px;
+    height: auto;
+    flex-shrink: 0;
+    opacity: 0.3;
+}
+
+.month-nav__arrow--next {
+    transform: scaleX(-1);
+}
+
+.month-nav__current {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 25px;
+}
+
+.month-nav__calendar-icon {
+    display: block;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.month-nav__current-text {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    color: #000000;
+}
+
+/* attendance_list と同仕様のテーブル */
+.attendance-list__table {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.attendance-list__table-inner {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 16px;
+}
+
+.attendance-list__table-header .attendance-list__table-row {
+    height: 36px;
+}
+
+.attendance-list__table-header .attendance-list__table-cell {
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 6px;
+    border: none;
+    border-bottom: 3px solid #e1e1e1;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    color: #737373;
+    background-color: #ffffff;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(1),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(1) {
+    width: 246px;
+    padding-left: 57px;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(2),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(2) {
+    width: 133px;
+    text-align: center;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(3),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(3) {
+    width: 133px;
+    text-align: center;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(4),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(4) {
+    width: 133px;
+    text-align: center;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(5),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(5) {
+    width: 133px;
+    text-align: center;
+}
+
+.attendance-list__table-header .attendance-list__table-cell:nth-child(6),
+.attendance-list__table-body .attendance-list__table-cell:nth-child(6) {
+    width: 122px;
+    text-align: center;
+}
+
+.attendance-list__table-body .attendance-list__table-row {
+    height: 36px;
+}
+
+.attendance-list__table-body .attendance-list__table-cell {
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 6px;
+    border: none;
+    border-bottom: 2px solid #e1e1e1;
+    background-color: #ffffff;
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    color: #737373;
+}
+
+.attendance-list__table-body .attendance-list__table-cell:nth-child(1) {
+    padding: 0 6px 0 57px;
+}
+
+.attendance-list__table-body .detail-link {
+    font-weight: 700;
+    font-size: 16px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.detail-link:hover {
+    text-decoration: underline;
+}
+
+/* CSV 出力ボタン */
+.csv-export {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.csv-export__button {
+    width: 184px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.csv-export__button:hover {
+    opacity: 0.9;
+}
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .admin-attendance-staff {
+        padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px) clamp(48px, 6vw, 80px);
+    }
+
+    .admin-attendance-staff__header,
+    .month-nav,
+    .attendance-list__table,
+    .csv-export {
+        max-width: clamp(820px, 64vw, 900px);
+    }
+
+    .admin-attendance-staff__header {
+        gap: clamp(10px, 0.95vw, 13px);
+        margin-bottom: clamp(32px, 3.5vw, 47px);
+    }
+
+    .admin-attendance-staff__heading {
+        font-size: clamp(26px, 2.1vw, 30px);
+        line-height: clamp(30px, 2.5vw, 36px);
+    }
+
+    .admin-attendance-staff__title-accent {
+        width: clamp(6px, 0.55vw, 8px);
+        height: clamp(36px, 3vw, 40px);
+    }
+
+    .month-nav {
+        height: clamp(54px, 4.5vw, 60px);
+        margin-bottom: clamp(28px, 3.2vw, 40px);
+        padding: 0 clamp(16px, 2vw, 24px);
+        border-radius: clamp(8px, 0.75vw, 10px);
+    }
+
+    .month-nav__link {
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .month-nav__arrow {
+        width: clamp(18px, 1.5vw, 20px);
+    }
+
+    .month-nav__calendar-icon {
+        width: clamp(20px, 1.65vw, 22px);
+        height: clamp(20px, 1.65vw, 22px);
+    }
+
+    .month-nav__current-text {
+        font-size: clamp(18px, 1.45vw, 20px);
+        line-height: clamp(22px, 1.8vw, 25px);
+    }
+
+    .attendance-list__table {
+        border-radius: clamp(8px, 0.75vw, 10px);
+    }
+
+    .attendance-list__table-inner,
+    .attendance-list__table-header .attendance-list__table-cell,
+    .attendance-list__table-body .attendance-list__table-cell,
+    .attendance-list__table-body .detail-link {
+        font-size: clamp(14px, 1.2vw, 16px);
+        line-height: clamp(32px, 2.85vw, 36px);
+    }
+
+    .attendance-list__table-header .attendance-list__table-row,
+    .attendance-list__table-body .attendance-list__table-row,
+    .attendance-list__table-header .attendance-list__table-cell,
+    .attendance-list__table-body .attendance-list__table-cell {
+        height: clamp(32px, 2.85vw, 36px);
+        line-height: clamp(32px, 2.85vw, 36px);
+    }
+
+    .csv-export {
+        margin-top: clamp(28px, 3vw, 40px);
+    }
+
+    .csv-export__button {
+        width: clamp(160px, 12vw, 184px);
+        height: clamp(44px, 3.3vw, 50px);
+        font-size: clamp(18px, 1.5vw, 22px);
+    }
+}
+
+@media (max-width: 900px) {
+    .admin-attendance-staff__heading {
+        font-size: clamp(20px, 4.5vw, 30px);
+        line-height: 1.25;
+    }
+
+    .month-nav {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 60px;
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .month-nav__current {
+        order: -1;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .attendance-list__table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .csv-export {
+        justify-content: center;
+    }
+}
