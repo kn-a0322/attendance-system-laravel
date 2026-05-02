@@ -53,7 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/admin/attendance/staff/{id}', [AdminAttendanceController::class, 'showStaff'])->name('admin.attendance.staff.show');
         Route::get('/admin/attendance/staff/export/{id}', [AdminAttendanceController::class, 'exportCsv'])->name('admin.attendance.staff.export');
         Route::get('/admin/stamp_correction_request/list', [AdminStampCorrectionRequestController::class, 'index'])->name('admin.stamp_correction_request.list');
-
+        Route::get('/admin/stamp_correction_request/show/{id}', [AdminStampCorrectionRequestController::class, 'show'])->name('admin.stamp_correction_request.show');
 
     });
 });

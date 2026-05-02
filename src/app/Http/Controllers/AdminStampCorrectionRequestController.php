@@ -23,5 +23,9 @@ class AdminStampCorrectionRequestController extends Controller
         return view('admin_stamp_correction_request_list', compact('requests', 'status'));
     }
 
-    
+    public function show($id)
+    {
+        $request = CorrectionRequest::with('user', 'detail', 'rests')->findOrFail($id);
+        return view('admin_stamp_correction_request_detail', compact('request'));
+    }
 }
