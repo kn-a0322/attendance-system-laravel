@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/attendance/detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin/stamp_correction_request/detail.css') }}">
 @endsection
 
 @section('content')
@@ -48,26 +49,40 @@
                             </span>
                         </td>
                     </tr> 
-                    @forelse($request->rests as $index => $rest)
-                        <tr>
-                            <th>休憩{{ $index + 1 }}</th>
-                            <td>
+                    @php
+                        $rests = $request->rests->values();
+                        $firstRest = $rests->get(0);
+                        $secondRest = $rests->get(1);
+                    @endphp
+                    <tr>
+                        <th>休憩</th>
+                        <td>
+                            @if($firstRest)
                                 <span class="admin-detail__text">
-                                    <span class="admin-detail__time-hhmm">{{ \Carbon\Carbon::parse($rest->rest_start)->format('H:i') }}</span>
+                                    <span class="admin-detail__time-hhmm">{{ \Carbon\Carbon::parse($firstRest->rest_start)->format('H:i') }}</span>
                                     <span class="admin-detail__time-between admin-detail__time-between--static" aria-hidden="true">
                                         <span class="admin-detail__tilde">〜</span>
                                     </span>
-                                    <span class="admin-detail__time-hhmm">{{ \Carbon\Carbon::parse($rest->rest_end)->format('H:i') }}</span>
+                                    <span class="admin-detail__time-hhmm">{{ \Carbon\Carbon::parse($firstRest->rest_end)->format('H:i') }}</span>
                                 </span>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <th>休憩</th>
-                            <td></td>
-                        </tr>
-                    @endforelse
+                            @endif
+                        </td>
+                    </tr>
                     <tr>
+                        <th>休憩2</th>
+                        <td>
+                            @if($secondRest)
+                                <span class="admin-detail__text">
+                                    <span class="admin-detail__time-hhmm">{{ \Carbon\Carbon::parse($secondRest->rest_start)->format('H:i') }}</span>
+                                    <span class="admin-detail__time-between admin-detail__time-between--static" aria-hidden="true">
+                                        <span class="admin-detail__tilde">〜</span>
+                                    </span>
+                                    <span class="admin-detail__time-hhmm">{{ \Carbon\Carbon::parse($secondRest->rest_end)->format('H:i') }}</span>
+                                </span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr class="attendance-detail__table-tr--remark">
                         <th>備考</th>
                         <td>
                             <textarea class="admin-detail__textarea" readonly>{{ $request->detail->remark }}</textarea>

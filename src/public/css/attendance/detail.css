@@ -117,7 +117,7 @@
 
 /* 6 等分基準の行高（最低）。行が増えた場合はカードの min-height 以上に自然に伸びる */
 .attendance-detail__table tbody tr:not(.attendance-detail__table-tr--remark) {
-    min-height: var(--row-gap-unit, 75px);
+    height: 90px;
 }
 
 /* 横罫線: 1px（カード枠と同系色）等間隔感を優先。最下行は下線なし */
@@ -129,8 +129,9 @@
 .attendance-detail__table th,
 .attendance-detail__table td {
     box-sizing: border-box;
-    min-height: var(--row-gap-unit, 75px);
-    padding: 1.1rem 0;
+    height: 90px;
+    padding-top: 0;
+    padding-bottom: 0;
     vertical-align: middle;
     font-size: 16px;
     font-weight: 700;
@@ -139,18 +140,18 @@
 
 /* 最下段 備考：他行と同じ th 左 64 / td 左 64・右 24（padding の一括指定で消えないよう縦横を明示） */
 .attendance-detail__table tbody tr.attendance-detail__table-tr--remark {
-    min-height: var(--row-gap-unit, 75px);
+    height: 90px;
 }
 
 .attendance-detail__table tbody tr.attendance-detail__table-tr--remark th {
-    min-height: var(--row-gap-unit, 75px);
-    padding: 1.1rem 0 1.1rem 64px;
+    height: 90px;
+    padding: 0 0 0 64px;
     vertical-align: middle;
 }
 
 .attendance-detail__table tbody tr.attendance-detail__table-tr--remark td {
-    min-height: var(--row-gap-unit, 75px);
-    padding: 1.1rem 24px 1.1rem 64px;
+    height: 90px;
+    padding: 0 24px 0 64px;
     vertical-align: middle;
     display: flex;
     align-items: center;
@@ -304,6 +305,12 @@
     letter-spacing: 0.15em;
     color: #000000;
     resize: vertical;
+}
+
+/* readonly表示では備考欄の枠線を消す */
+.attendance-detail--readonly .attendance-detail__table td textarea {
+    border: none;
+    background: transparent;
 }
 
 .attendance-detail__user-name {

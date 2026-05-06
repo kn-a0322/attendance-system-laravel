@@ -1,0 +1,82 @@
+.admin-detail__form .attendance-detail__card {
+    min-height: 0;
+}
+
+.admin-detail__form .attendance-detail__table th {
+    width: 290px;
+    max-width: 290px;
+}
+
+.admin-detail__date {
+    display: inline-flex;
+    align-items: baseline;
+    column-gap: 210px;
+    row-gap: 8px;
+    flex-wrap: wrap;
+}
+
+.admin-detail__text {
+    display: inline-flex;
+    align-items: center;
+}
+
+.admin-detail__time-between {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 210px;
+    width: 210px;
+}
+
+.admin-detail__tilde {
+    line-height: 1;
+}
+
+.admin-detail__form .attendance-detail__table-tr--remark td {
+    padding-bottom: 0;
+}
+
+.admin-detail__textarea {
+    border: 1px solid #d9d9d9;
+    resize: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.attendance-detail--readonly .admin-detail__textarea {
+    border: none;
+}
+
+.admin-detail__actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 900px;
+    margin: 24px auto 0;
+}
+
+.admin-detail__approve-button,
+.admin-detail__approved-label {
+    width: 130px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    line-height: 1;
+}
+
+.admin-detail__approve-button {
+    background-color: #000000;
+    cursor: pointer;
+}
+
+.admin-detail__approved-label {
+    background-color: #696969;
+    cursor: not-allowed;
+}
