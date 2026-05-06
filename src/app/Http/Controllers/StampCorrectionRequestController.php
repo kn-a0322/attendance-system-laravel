@@ -25,6 +25,6 @@ class StampCorrectionRequestController extends Controller
         ->with(['user', 'attendance', 'detail'])
         ->get();
         
-        return view('stamp_correction_request_list', compact('pendingRequests', 'approvedRequests'));
+        return view('stamp_correction_request.list', compact('pendingRequests', 'approvedRequests'));
     }
 }

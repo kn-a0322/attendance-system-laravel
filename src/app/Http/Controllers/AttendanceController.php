@@ -22,7 +22,7 @@ class AttendanceController extends Controller
             $status = $attendance->status;
         }  
 
-        return view('attendance', compact('status'));
+        return view('attendance.index', compact('status'));
     }
 
     public function start(Request $request)
@@ -160,7 +160,7 @@ class AttendanceController extends Controller
             $calendarDays->push($startDate->copy()->addDays($d));
         }
 
-        return view('attendance_list', compact(
+        return view('attendance.list', compact(
             'attendances',
             'currentMonth',
             'prevMonth',

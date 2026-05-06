@@ -1,0 +1,200 @@
+/* 管理者 スタッフ一覧（背景・タイトル・テーブルは attendance_list と同系） */
+
+.content:has(.admin-staff-list) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f0eff2;
+    flex: 1;
+    width: 100%;
+}
+
+.admin-staff-list {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: 89px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    letter-spacing: 0.15em;
+}
+
+.admin-staff-list__header,
+.admin-staff-list__table {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+}
+
+.admin-staff-list__header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 47px;
+}
+
+.admin-staff-list__title-accent {
+    flex-shrink: 0;
+    width: 8px;
+    height: 40px;
+    background-color: #000000;
+    border-radius: 1px;
+}
+
+.admin-staff-list__heading {
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000000;
+}
+
+.admin-staff-list__table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+.admin-staff-list__table thead tr {
+    height: 36px;
+}
+
+.admin-staff-list__table th {
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 16px;
+    border: none;
+    border-bottom: 3px solid #e1e1e1;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    color: #737373;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ffffff;
+}
+
+.admin-staff-list__table tbody tr {
+    height: 36px;
+}
+
+.admin-staff-list__table td {
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 16px;
+    border: none;
+    border-bottom: 2px solid #e1e1e1;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    color: #737373;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ffffff;
+}
+
+/* 3カラムを等間隔に配置 */
+.admin-staff-list__table th:nth-child(1),
+.admin-staff-list__table td:nth-child(1) {
+    width: 33.333%;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.admin-staff-list__table th:nth-child(2),
+.admin-staff-list__table td:nth-child(2) {
+    width: 33.333%;
+}
+
+.admin-staff-list__table th:nth-child(3),
+.admin-staff-list__table td:nth-child(3) {
+    width: 33.334%;
+}
+
+.staff-list__detail-link {
+    font-weight: 700;
+    font-size: 16px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.staff-list__detail-link:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .admin-staff-list {
+        padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px) clamp(48px, 6vw, 80px);
+    }
+
+    .admin-staff-list__header,
+    .admin-staff-list__table {
+        max-width: clamp(820px, 64vw, 900px);
+    }
+
+    .admin-staff-list__header {
+        gap: clamp(10px, 0.95vw, 13px);
+        margin-bottom: clamp(32px, 3.5vw, 47px);
+    }
+
+    .admin-staff-list__heading {
+        font-size: clamp(26px, 2.1vw, 30px);
+        line-height: clamp(30px, 2.5vw, 36px);
+    }
+
+    .admin-staff-list__title-accent {
+        width: clamp(6px, 0.55vw, 8px);
+        height: clamp(36px, 3vw, 40px);
+    }
+
+    .admin-staff-list__table {
+        border-radius: clamp(8px, 0.75vw, 10px);
+    }
+
+    .admin-staff-list__table th,
+    .admin-staff-list__table td,
+    .staff-list__detail-link {
+        font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    .admin-staff-list__table th,
+    .admin-staff-list__table td {
+        padding-left: clamp(10px, 1vw, 16px);
+        padding-right: clamp(10px, 1vw, 16px);
+    }
+
+    .admin-staff-list__table thead tr,
+    .admin-staff-list__table tbody tr,
+    .admin-staff-list__table th,
+    .admin-staff-list__table td {
+        height: clamp(32px, 2.85vw, 36px);
+        line-height: clamp(32px, 2.85vw, 36px);
+    }
+}
+
+@media (max-width: 900px) {
+    .admin-staff-list__heading {
+        font-size: clamp(20px, 4.5vw, 30px);
+        line-height: 1.25;
+    }
+
+    .admin-staff-list__table {
+        display: block;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .admin-staff-list__table th,
+    .admin-staff-list__table td {
+        white-space: nowrap;
+    }
+}

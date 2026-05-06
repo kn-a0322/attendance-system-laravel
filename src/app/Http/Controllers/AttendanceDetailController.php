@@ -24,7 +24,7 @@ class AttendanceDetailController extends Controller
             ->where('user_id', auth()->id())    
             ->findOrFail($id);
 
-        return view('attendance_detail', compact('attendance'));
+        return view('attendance.detail', compact('attendance'));
     }
 
     public function storeCorrection(ApplicationRequest $request, $attendance_id)

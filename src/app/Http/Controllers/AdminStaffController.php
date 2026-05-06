@@ -13,6 +13,6 @@ class AdminStaffController extends Controller
     {
         $users = User::where('role', 0)->get();
 
-        return view('admin_staff_list', compact('users'));
+        return view('admin.staff.list', compact('users'));
     }
 }

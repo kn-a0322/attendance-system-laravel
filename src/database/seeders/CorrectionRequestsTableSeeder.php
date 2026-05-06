@@ -30,6 +30,11 @@ class CorrectionRequestsTableSeeder extends Seeder
             'remark' => '電車遅延のため',
         ]);
 
+        $pending->rests()->create([
+            'rest_start' => '12:00:00',
+            'rest_end' => '13:00:00',
+        ]);
+
         //承認済みのデータ
         $approved = CorrectionRequest::create([
             'user_id' => 1,
