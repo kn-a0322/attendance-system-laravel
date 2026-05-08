@@ -80,3 +80,31 @@
     background-color: #696969;
     cursor: not-allowed;
 }
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .admin-detail__form .attendance-detail__table th {
+        width: clamp(250px, 19vw, 290px);
+        max-width: clamp(250px, 19vw, 290px);
+    }
+
+    .admin-detail__date {
+        column-gap: clamp(140px, 15.5vw, 210px);
+    }
+
+    .admin-detail__time-between {
+        flex: 0 0 clamp(140px, 15.5vw, 210px);
+        width: clamp(140px, 15.5vw, 210px);
+    }
+
+    .admin-detail__actions {
+        max-width: clamp(820px, 64vw, 900px);
+        margin-top: clamp(18px, 2vw, 24px);
+    }
+
+    .admin-detail__approve-button,
+    .admin-detail__approved-label {
+        width: clamp(118px, 10.5vw, 130px);
+        height: clamp(46px, 4.2vw, 50px);
+        font-size: clamp(19px, 1.7vw, 22px);
+    }
+}
