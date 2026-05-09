@@ -3,11 +3,10 @@
 namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 
-class LoginTest extends TestCase
+class AdminLoginTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -15,13 +14,12 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function test_login_fails_if_email_is_empty()
+    public function test_admin_login_fails_if_email_is_empty()
     {
         $response = $this->post('/login', [
             'email' => '',
             'password' => 'password123',
         ]);
-
         $response->assertSessionHasErrors(['email']);
         $this->assertEquals(
             'メールアドレスを入力してください',
@@ -42,7 +40,7 @@ class LoginTest extends TestCase
         );
     }
 
-    public function test_login_fails_if_email_is_not_registered()
+    public function test_admin_login_fails_with_invalid_credentials()
     { 
         //正しいユーザーを用意
         $user = User::factory()->create([
@@ -66,5 +64,35 @@ class LoginTest extends TestCase
             'password' => 'password123',
         ]);
         $response2->assertSessionHasErrors(['email']);
+        $this->assertEquals(
+            'ログイン情報が登録されていません',
+            session('errors')->get('email')[0]
+        );
+    }
+
+    public function test_admin_login_page_is_displayed()
+    {
+        $response = $this->get('/admin/login');
+
+        $response->assertOk();
+        $response->assertSee('管理者ログイン', false);
+    }
+
+    public function test_admin_redirects_to_admin_attendance_list_after_successful_login()
+    {
+        $admin = User::factory()->create([
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password123'),
+            'role' => 1,
+            'email_verified_at' => now(),
+        ]);
+
+        $response = $this->post('/login', [
+            'email' => 'admin@example.com',
+            'password' => 'password123',
+        ]);
+
+        $response->assertRedirect(route('admin.attendance.list'));
+        $this->assertAuthenticatedAs($admin);
     }
 }
