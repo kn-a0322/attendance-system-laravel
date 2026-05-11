@@ -1,0 +1,15 @@
+node_modules
+src/public/hot
+src/public/storage
+src/storage/*.key
+src/vendor
+src/.env
+src/.env.backup
+src/.phpunit.result.cache
+docker-compose.override.yml
+docker-compose.yml
+npm-debug.log
+yarn-error.log
+.idea
+.vscode
+docker/mysql/data/
