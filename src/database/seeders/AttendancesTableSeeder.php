@@ -37,6 +37,10 @@ class AttendancesTableSeeder extends Seeder
                         continue;
                     }
 
+                    if($currentDate->isToday() || $currentDate->isFuture()) {
+                        continue;
+                    }
+
                     Attendance::factory()
                     ->has(Rest::factory()->count(rand(1, 2)))
                     ->create([

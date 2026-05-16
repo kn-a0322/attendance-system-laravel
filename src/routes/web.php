@@ -25,7 +25,7 @@ Route::get('/login', function () {
 })->name('login');
 //管理者用ログイン画面
 Route::get('/admin/login', function () {
-    return view('auth.admin_login');
+    return view('admin.login');
 })->name('admin.login');
 
 //ログインしているかチェック
