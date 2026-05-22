@@ -208,16 +208,6 @@ body {
     }
 }
 
-@media (max-width: 1399px) {
-    .header-nav__user-menu {
-        left: auto;
-        right: 20px;
-        transform: translateY(-50%);
-        gap: clamp(16px, 3vw, 32px);
-        max-width: calc(100vw - 440px);
-    }
-}
-
 /* コンテンツエリア */
 .content {
     max-width: 1515px;

@@ -27,16 +27,17 @@
             <img src="{{ asset('images/logo/arrow.png') }}" alt="" class="month-nav__arrow month-nav__arrow--next" width="20" height="20">
         </a>
     </nav>
+    <h2 class="visually-hidden">月別勤怠表</h2>
     <div class="attendance-list__table">
         <table class="attendance-list__table-inner">
             <thead class="attendance-list__table-header">
                 <tr class="attendance-list__table-row">
-                    <th class="attendance-list__table-cell">日付</th>
-                    <th class="attendance-list__table-cell">出勤</th>
-                    <th class="attendance-list__table-cell">退勤</th>
-                    <th class="attendance-list__table-cell">休憩</th>
-                    <th class="attendance-list__table-cell">合計</th>
-                    <th class="attendance-list__table-cell">詳細</th>
+                    <th class="attendance-list__table-cell" scope="col">日付</th>
+                    <th class="attendance-list__table-cell" scope="col">出勤</th>
+                    <th class="attendance-list__table-cell" scope="col">退勤</th>
+                    <th class="attendance-list__table-cell" scope="col">休憩</th>
+                    <th class="attendance-list__table-cell" scope="col">合計</th>
+                    <th class="attendance-list__table-cell" scope="col">詳細</th>
                 </tr>
             </thead>
             <tbody class="attendance-list__table-body">

@@ -6,37 +6,29 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             'email' => ['required', 'email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string'],
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
-            'email.required' => 'メールアドレスを入力してください。',
-            'email.email' => 'メールアドレスをメール形式で入力してください。',
-            'password.required' => 'パスワードを入力してください。',
-            'password.min' => 'パスワードは8文字以上で入力してください。',
-            'password.confirmed' => 'ログイン情報が登録されていません。',
+            'email.required' => 'メールアドレスを入力してください',
+            'password.required' => 'パスワードを入力してください',
         ];
+    }
+
+    public function failedAuthenticationMessage(): string
+    {
+        return 'ログイン情報が登録されていません';
     }
 }

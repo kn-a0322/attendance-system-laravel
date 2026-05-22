@@ -338,26 +338,3 @@
         line-height: clamp(32px, 2.85vw, 36px);
     }
 }
-
-@media (max-width: 900px) {
-    .admin-stamp-req {
-        padding: 48px 16px 64px;
-    }
-
-    .stamp-correction-list__tabs {
-        padding-left: 0;
-    }
-
-    .stamp-correction-list__tab-list {
-        gap: 2rem;
-        flex-wrap: wrap;
-    }
-
-    .stamp-correction-list__table {
-        overflow-x: auto;
-    }
-
-    .stamp-correction-list__table-inner {
-        min-width: 720px;
-    }
-}

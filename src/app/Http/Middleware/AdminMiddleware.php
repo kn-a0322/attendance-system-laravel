@@ -17,17 +17,14 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-       // 1. まずログインしているかチェック
-    if (!Auth::check()) {
-        return redirect()->route('login');
-    }
+        if (! Auth::check()) {
+            return redirect()->route('login');
+        }
 
-    // 2. ログインしていても、管理者(role=1)でなければ一般画面へ
-    if (!Auth::user()->isAdmin()) {
-        return redirect()->route('attendance.index');
-    }
+        if (! Auth::user()->isAdmin()) {
+            return redirect()->route('attendance.index');
+        }
 
-    // 両方クリア（＝管理者である）なら、管理画面を表示
-    return $next($request);
+        return $next($request);
     }
 }

@@ -1,0 +1,128 @@
+/* メール認証誘導画面 */
+
+.verify-email {
+    width: 100%;
+    max-width: 1512px;
+    min-height: 680px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+    box-sizing: border-box;
+}
+
+.content:has(.verify-email) {
+    width: 100%;
+    max-width: none;
+    padding-top: 24px;
+}
+
+.verify-email__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 640px;
+    padding-top: 237px;
+    box-sizing: border-box;
+}
+
+.verify-email__alert {
+    width: 720px;
+    max-width: 100%;
+    margin: 0 0 24px;
+    padding: 12px;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000000;
+    text-align: center;
+}
+
+.verify-email__message {
+    width: 720px;
+    max-width: 100%;
+    min-height: 58px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    color: #000000;
+    text-align: center;
+}
+
+.verify-email__message-line {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.verify-email__link {
+    margin: 62px 0 0;
+    padding: 0;
+}
+
+.verify-email__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 257px;
+    height: 69px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    color: #000000;
+    text-decoration: none;
+    background-color: #d9d9d9;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.verify-email__button:hover {
+    opacity: 0.9;
+}
+
+.verify-email__resend {
+    margin: 24px 0 0;
+    padding: 0;
+}
+
+.verify-email__form {
+    margin: 0;
+    padding: 0;
+}
+
+.verify-email__resend-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 257px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 100%;
+    text-align: center;
+    color: #0073cc;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.verify-email__resend-link:hover {
+    opacity: 0.85;
+}

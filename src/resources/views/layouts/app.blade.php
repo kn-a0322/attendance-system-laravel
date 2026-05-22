@@ -31,7 +31,7 @@
             <a href="{{ route('admin.staff.list') }}" class="header-nav__staff-list-link">スタッフ一覧</a>
           </li>
           <li class="header-nav__admin-menu-item">
-            <a href="{{ route('admin.stamp_correction_request.list') }}" class="header-nav__stamp-correction-request-link">申請一覧</a>
+            <a href="{{ route('stamp_correction_request.list') }}" class="header-nav__stamp-correction-request-link">申請一覧</a>
           </li>
           <li class="header-nav__admin-menu-item">
             <form action="{{ route('logout') }}" method="post">
@@ -65,9 +65,9 @@
       </nav>
       @endif
     </header>
-    <div class="content">
+    <main class="content">
       @yield('content')
-    </div>
+    </main>
   </div>
 </body>
 

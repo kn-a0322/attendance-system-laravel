@@ -11,11 +11,9 @@
         <h1 class="attendance-detail__heading">勤怠詳細</h1>
     </div>
 
-    @if($attendance->correctionRequests->where('status', 0)->first())
+    @if($attendance->hasPendingCorrectionRequest())
         @php
-            //承認待ちの修正申請を取得
-            $pendingRequest = $attendance->correctionRequests->where('status', 0)->first();
-            //修正申請の詳細を取得
+            $pendingRequest = $attendance->correctionRequests->where('status', \App\Models\CorrectionRequest::STATUS_PENDING)->first();
             $pendingDetail = $pendingRequest->detail;
         @endphp
         <div class="attendance-detail__body attendance-detail--readonly">
@@ -82,12 +80,6 @@
         @method('PUT')
     <div class="attendance-detail__body">
         <div class="attendance-detail__card">
-        @if ($errors->any())
-        <p class="attendance-detail__error-summary" role="alert">
-            <strong>入力内容に誤りがあります。</strong> 各項目の下のメッセージをご確認ください。
-        </p>
-        @endif
-
         <table class="attendance-detail__table">
             <tbody>
                 <tr>

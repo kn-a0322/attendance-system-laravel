@@ -125,9 +125,3 @@
 .verify-email__resend-link:hover {
     opacity: 0.85;
 }
-
-@media screen and (max-width: 1511px) {
-    .verify-email {
-        min-width: 1512px;
-    }
-}

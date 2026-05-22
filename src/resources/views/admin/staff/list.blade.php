@@ -10,12 +10,13 @@
         <span class="admin-staff-list__title-accent" aria-hidden="true"></span>
         <h1 class="admin-staff-list__heading">スタッフ一覧</h1>
     </div>
+    <h2 class="visually-hidden">スタッフ一覧表</h2>
     <table class="admin-staff-list__table">
         <thead>
             <tr>
-                <th>名前</th>
-                <th>メールアドレス</th>
-                <th>月次勤怠</th>
+                <th scope="col">名前</th>
+                <th scope="col">メールアドレス</th>
+                <th scope="col">月次勤怠</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +24,7 @@
                 <tr>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td><a href="{{ route('admin.attendance.staff.show', ['id' => $user->id]) }}" class="staff-list__detail-link">詳細</a></td>
+                    <td><a href="{{ route('admin.attendance.staff.show', ['id' => $user->id]) }}" class="admin-staff-list__detail-link">詳細</a></td>
                 </tr>
             @endforeach
         </tbody>

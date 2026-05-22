@@ -13,15 +13,16 @@
 <nav class="stamp-correction-list__tabs" aria-label="申請の表示切替">
     <ul class="stamp-correction-list__tab-list">
         <li class="stamp-correction-list__tab-item">
-            <a href="{{ route('admin.stamp_correction_request.list', ['status' => 0]) }}" class="stamp-correction-list__tab-link {{ request('status', 0) == 0 ? 'is-active' : '' }}">承認待ち</a>
+            <a href="{{ route('stamp_correction_request.list', ['status' => \App\Models\CorrectionRequest::STATUS_PENDING]) }}" class="stamp-correction-list__tab-link {{ (int) request('status', \App\Models\CorrectionRequest::STATUS_PENDING) === \App\Models\CorrectionRequest::STATUS_PENDING ? 'is-active' : '' }}">承認待ち</a>
         </li>
         <li class="stamp-correction-list__tab-item">
-            <a href="{{ route('admin.stamp_correction_request.list', ['status' => 1]) }}" class="stamp-correction-list__tab-link {{ request('status', 1) == 1 ? 'is-active' : '' }}">承認済み</a>
+            <a href="{{ route('stamp_correction_request.list', ['status' => \App\Models\CorrectionRequest::STATUS_APPROVED]) }}" class="stamp-correction-list__tab-link {{ (int) request('status') === \App\Models\CorrectionRequest::STATUS_APPROVED ? 'is-active' : '' }}">承認済み</a>
         </li>
     </ul>
 </nav>
 <div class="stamp-correction-list__tab-rule" role="presentation" aria-hidden="true"></div>
 
+<h2 class="visually-hidden">修正申請一覧表</h2>
 <div class="stamp-correction-list__table">
     <table class="stamp-correction-list__table-inner">
         <thead class="stamp-correction-list__table-header">
@@ -37,12 +38,12 @@
         <tbody class="stamp-correction-list__table-body">
             @forelse($requests as $request)
                 <tr class="stamp-correction-list__table-row">
-                    <td class="stamp-correction-list__table-cell">{{ $request->status == 0 ? '承認待ち' : '承認済み' }}</td>
+                    <td class="stamp-correction-list__table-cell">{{ $request->status === \App\Models\CorrectionRequest::STATUS_PENDING ? '承認待ち' : '承認済み' }}</td>
                     <td class="stamp-correction-list__table-cell">{{ $request->user->name }}</td>
-                    <td class="stamp-correction-list__table-cell">{{ $request->detail->date ? \Carbon\Carbon::parse($request->detail->date)->format('Y/m/d') : '' }}</td>
+                    <td class="stamp-correction-list__table-cell">{{ $request->attendance->date->format('Y/m/d') }}</td>
                     <td class="stamp-correction-list__table-cell">{{ $request->detail->remark }}</td>
                     <td class="stamp-correction-list__table-cell">{{ $request->created_at->format('Y/m/d H:i') }}</td>
-                    <td class="stamp-correction-list__table-cell"><a href="{{ route('admin.stamp_correction_request.show', ['id' => $request->id]) }}" class="stamp-correction-list__table-link">詳細</a></td>
+                    <td class="stamp-correction-list__table-cell"><a href="{{ route('stamp_correction_request.approve', ['attendance_correct_request_id' => $request->id]) }}" class="stamp-correction-list__table-link">詳細</a></td>
                 </tr>
             @empty
                 <tr class="stamp-correction-list__table-row">

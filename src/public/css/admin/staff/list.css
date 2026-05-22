@@ -120,14 +120,14 @@
     width: 33.334%;
 }
 
-.staff-list__detail-link {
+.admin-staff-list__detail-link {
     font-weight: 700;
     font-size: 16px;
     color: #000000;
     text-decoration: none;
 }
 
-.staff-list__detail-link:hover {
+.admin-staff-list__detail-link:hover {
     text-decoration: underline;
 }
 
@@ -162,7 +162,7 @@
 
     .admin-staff-list__table th,
     .admin-staff-list__table td,
-    .staff-list__detail-link {
+    .admin-staff-list__detail-link {
         font-size: clamp(14px, 1.2vw, 16px);
     }
 
@@ -178,23 +178,5 @@
     .admin-staff-list__table td {
         height: clamp(32px, 2.85vw, 36px);
         line-height: clamp(32px, 2.85vw, 36px);
-    }
-}
-
-@media (max-width: 900px) {
-    .admin-staff-list__heading {
-        font-size: clamp(20px, 4.5vw, 30px);
-        line-height: 1.25;
-    }
-
-    .admin-staff-list__table {
-        display: block;
-        overflow-x: auto;
-        width: 100%;
-    }
-
-    .admin-staff-list__table th,
-    .admin-staff-list__table td {
-        white-space: nowrap;
     }
 }

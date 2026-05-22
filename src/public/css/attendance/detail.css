@@ -395,21 +395,6 @@
 }
 
 /* 勤怠詳細：バリデーションエラー */
-.attendance-detail__error-summary {
-    box-sizing: border-box;
-    margin: 20px 24px 16px;
-    padding: 0.75rem 1rem;
-    border: 1px solid #f87171;
-    border-radius: 6px;
-    background-color: #fef2f2;
-    color: #991b1b;
-    font-size: 14px;
-    line-height: 1.5;
-    text-align: left;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-}
-
 .attendance-detail__error-message {
     display: block;
     margin: 0.5rem 0 0;
@@ -507,79 +492,5 @@
         width: clamp(118px, 10.5vw, 130px);
         height: clamp(46px, 4.2vw, 50px);
         font-size: clamp(19px, 1.7vw, 22px);
-    }
-}
-
-/* 小さい画面 */
-@media (max-width: 900px) {
-    .attendance-detail__date {
-        column-gap: min(210px, 8vw);
-    }
-
-    .attendance-detail__time-between,
-    .attendance-detail__time-between--static {
-        flex: 1 1 100px;
-        width: min(210px, 100%);
-        min-width: 0;
-    }
-
-    .attendance-detail__time-input {
-        row-gap: 8px;
-    }
-}
-
-@media (max-width: 768px) {
-    .attendance-detail {
-        padding: 48px 16px 64px;
-    }
-
-    .attendance-detail__card {
-        min-height: 0;
-    }
-
-    .attendance-detail__table th,
-    .attendance-detail__table td {
-        display: block;
-        width: 100% !important;
-        min-height: 0;
-        border-bottom: 1px solid #e1e1e1;
-        padding: 12px 16px;
-    }
-
-    .attendance-detail__table th {
-        padding-left: 16px;
-        max-width: none;
-    }
-
-    .attendance-detail__table tr:not(:last-child) th,
-    .attendance-detail__table tr:not(:last-child) td {
-        border-bottom: none;
-    }
-
-    .attendance-detail__table tr:not(:last-child) {
-        border-bottom: 1px solid #e1e1e1;
-    }
-
-    .attendance-detail__table th {
-        padding-top: 16px;
-        padding-bottom: 4px;
-    }
-
-    .attendance-detail__table td {
-        padding-top: 4px;
-        padding-bottom: 16px;
-    }
-
-    .attendance-detail__date {
-        flex-direction: column;
-        row-gap: 4px;
-        column-gap: 0;
-    }
-
-    .attendance-detail__time-between,
-    .attendance-detail__time-between--static {
-        flex: 0 0 auto;
-        width: 100%;
-        min-height: 1.5rem;
     }
 }

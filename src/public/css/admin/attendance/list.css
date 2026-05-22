@@ -143,14 +143,6 @@
     overflow: hidden;
 }
 
-/* 管理者ページでは見出しが長い場合に折返し可 */
-@media (max-width: 900px) {
-    .admin-attendance-list__heading {
-        font-size: clamp(20px, 4.5vw, 30px);
-        line-height: 1.25;
-    }
-}
-
 /* PC 幅 1400–1540px（勤怠一覧 attendance_list.css の .attendance-list と同じ clamp 体系。
  * 表本体の .attendance-list__* は同ファイル内メディアクエリで上書きされる） */
 @media (min-width: 1400px) and (max-width: 1540px) {
@@ -200,26 +192,5 @@
 
     .admin-attendance-list__table {
         border-radius: clamp(8px, 0.75vw, 10px);
-    }
-}
-
-@media (max-width: 900px) {
-    .date-nav {
-        flex-wrap: wrap;
-        height: auto;
-        min-height: 60px;
-        padding: 12px 16px;
-        gap: 12px;
-    }
-
-    .date-nav__current {
-        order: -1;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .admin-attendance-list__table {
-        width: 100%;
-        overflow-x: auto;
     }
 }

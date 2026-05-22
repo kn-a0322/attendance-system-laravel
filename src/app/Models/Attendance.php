@@ -51,7 +51,14 @@ class Attendance extends Model
     {
         return $this->hasMany(CorrectionRequest::class);
     }
-    
+
+    public function hasPendingCorrectionRequest(): bool
+    {
+        return $this->correctionRequests()
+            ->where('status', CorrectionRequest::STATUS_PENDING)
+            ->exists();
+    }
+
     /*休憩時間の合計を取得（アクセサ名 → $attendance->total_rest_time）*/
     public function getTotalRestTimeAttribute(): string
     {

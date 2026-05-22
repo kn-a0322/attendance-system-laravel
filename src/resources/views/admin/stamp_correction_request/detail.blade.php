@@ -16,7 +16,7 @@
         <p class="attendance-detail__message attendance-detail__message--success" role="status">{{ session('success') }}</p>
     @endif
     
-    <form action="{{ route('admin.stamp_correction_request.approve', $request->id) }}" method="post" class="admin-detail__form">
+    <form action="{{ route('stamp_correction_request.approve.update', ['attendance_correct_request_id' => $request->id]) }}" method="post" class="admin-detail__form">
         @csrf
         @method('PATCH')
         
@@ -32,8 +32,8 @@
                         <th>日付</th>
                             <td>
                                 <span class="admin-detail__date">
-                                    <span class="admin-detail__date-year">{{ \Carbon\Carbon::parse($request->detail->date)->format('Y') }}年</span>
-                                    <span class="admin-detail__date-mdmj">{{ \Carbon\Carbon::parse($request->detail->date)->format('n') }}月{{ \Carbon\Carbon::parse($request->detail->date)->format('j') }}日</span>
+                                    <span class="admin-detail__date-year">{{ $request->attendance->date->format('Y') }}年</span>
+                                    <span class="admin-detail__date-mdmj">{{ $request->attendance->date->format('n') }}月{{ $request->attendance->date->format('j') }}日</span>
                                 </span>
                             </td>
                     </tr>

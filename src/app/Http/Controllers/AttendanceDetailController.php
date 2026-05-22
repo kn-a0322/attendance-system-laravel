@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CorrectionRequest;
-use App\Models\CorrectionRequestRest;
 use App\Models\CorrectionRequestDetail;
 use App\Models\Attendance;
-use Illuminate\Http\Request;
 use App\Http\Requests\ApplicationRequest;
 use Carbon\Carbon;
 
@@ -21,62 +19,65 @@ class AttendanceDetailController extends Controller
             'correctionRequests.detail',
             'correctionRequests.rests',
         ])
-            ->where('user_id', auth()->id())    
+            ->where('user_id', auth()->id())
             ->findOrFail($id);
 
         return view('attendance.detail', compact('attendance'));
     }
 
-    public function storeCorrection(ApplicationRequest $request, $attendance_id)
-    { 
-        $date = $request->input('date');
+    public function storeCorrection(ApplicationRequest $request, $attendanceId)
+    {
+        $attendance = Attendance::where('user_id', auth()->id())->findOrFail($attendanceId);
 
-        //correction_requestsテーブルにデータを保存
-        $correctionRequest = CorrectionRequest::create([
-            'user_id' => auth()->id(),
-            'attendance_id' => $attendance_id,
-            'status' => 0,
-        ]);
-
-        //correction_request_detailsテーブルにデータを保存
-        $in = Carbon::parse($date . ' ' . $request->clock_in);
-        $out = Carbon::parse($date . ' ' . $request->clock_out);
-       if($out->lt($in)) {
-            $out->addDay();
+        if ($attendance->hasPendingCorrectionRequest()) {
+            return back()->with('error', '承認待ちのため修正はできません。');
         }
 
-        CorrectionRequestDetail :: create([
+        $date = $request->input('date');
+
+        $correctionRequest = CorrectionRequest::create([
+            'user_id' => auth()->id(),
+            'attendance_id' => $attendanceId,
+            'status' => CorrectionRequest::STATUS_PENDING,
+        ]);
+
+        $clockInAt = Carbon::parse($date . ' ' . $request->clock_in);
+        $clockOutAt = Carbon::parse($date . ' ' . $request->clock_out);
+        if ($clockOutAt->lt($clockInAt)) {
+            $clockOutAt->addDay();
+        }
+
+        CorrectionRequestDetail::create([
             'correction_request_id' => $correctionRequest->id,
-            'clock_in' => $in,
-            'clock_out' => $out,
+            'clock_in' => $clockInAt,
+            'clock_out' => $clockOutAt,
             'remark' => $request->remark,
         ]);
 
-        //correction_request_restsテーブルにデータを保存
         $startTimes = $request->input('rest_start', []);
         $endTimes = $request->input('rest_end', []);
 
-        foreach($startTimes as $index => $startTime) {
+        foreach ($startTimes as $index => $startTime) {
             $endTime = $endTimes[$index] ?? null;
-            if(!empty($startTime) && !empty($endTime)) {
-                $start = Carbon::parse($date . ' ' . $startTime);
-                $end = Carbon::parse($date . ' ' . $endTime);
-                if($start->lt($in)) {
-                    $start->addDay();
+            if (! empty($startTime) && ! empty($endTime)) {
+                $restStartAt = Carbon::parse($date . ' ' . $startTime);
+                $restEndAt = Carbon::parse($date . ' ' . $endTime);
+                if ($restStartAt->lt($clockInAt)) {
+                    $restStartAt->addDay();
                 }
-                if($end->lt($start)) {
-                    $end->addDay();
+                if ($restEndAt->lt($restStartAt)) {
+                    $restEndAt->addDay();
                 }
 
-                $correctionRequest -> rests() -> create([
-                    'rest_start' => $start,
-                    'rest_end' => $end,
+                $correctionRequest->rests()->create([
+                    'rest_start' => $restStartAt,
+                    'rest_end' => $restEndAt,
                 ]);
             }
         }
 
         return redirect()
-            ->route('attendance.detail', $attendance_id)
+            ->route('attendance.detail', $attendanceId)
             ->with('success', '修正申請が完了しました');
     }
 }

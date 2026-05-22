@@ -25,7 +25,7 @@ class AdminAttendanceCorrectionTest extends TestCase
         $this->createPendingCorrection($userB, '2026-05-11', '申請理由B');
 
         $response = $this->actingAs($admin)->get(
-            route('admin.stamp_correction_request.list', ['status' => 0])
+            route('stamp_correction_request.list', ['status' => CorrectionRequest::STATUS_PENDING])
         );
 
         $response->assertOk();
@@ -44,13 +44,13 @@ class AdminAttendanceCorrectionTest extends TestCase
 
         $request = $this->createPendingCorrection($user, '2026-05-15', '承認済み確認用');
         $request->update([
-            'status' => 1,
+            'status' => CorrectionRequest::STATUS_APPROVED,
             'approved_by' => $admin->id,
             'approved_at' => now(),
         ]);
 
         $response = $this->actingAs($admin)->get(
-            route('admin.stamp_correction_request.list', ['status' => 1])
+            route('stamp_correction_request.list', ['status' => CorrectionRequest::STATUS_APPROVED])
         );
 
         $response->assertOk();
@@ -74,7 +74,7 @@ class AdminAttendanceCorrectionTest extends TestCase
         );
 
         $response = $this->actingAs($admin)->get(
-            route('admin.stamp_correction_request.show', $correction->id)
+            route('stamp_correction_request.approve', ['attendance_correct_request_id' => $correction->id])
         );
 
         $response->assertOk();
@@ -103,7 +103,7 @@ class AdminAttendanceCorrectionTest extends TestCase
         $correction = CorrectionRequest::create([
             'user_id' => $user->id,
             'attendance_id' => $attendance->id,
-            'status' => 0,
+            'status' => CorrectionRequest::STATUS_PENDING,
         ]);
 
         CorrectionRequestDetail::create([
@@ -113,17 +113,17 @@ class AdminAttendanceCorrectionTest extends TestCase
             'remark' => '承認テスト用',
         ]);
 
-        $this->actingAs($admin)->get(route('admin.stamp_correction_request.show', $correction->id));
+        $this->actingAs($admin)->get(route('stamp_correction_request.approve', ['attendance_correct_request_id' => $correction->id]));
 
         $response = $this->patch(
-            route('admin.stamp_correction_request.approve', $correction->id)
+            route('stamp_correction_request.approve.update', ['attendance_correct_request_id' => $correction->id])
         );
 
-        $response->assertRedirect(route('admin.stamp_correction_request.list', ['status' => 1]));
+        $response->assertRedirect(route('stamp_correction_request.list', ['status' => CorrectionRequest::STATUS_APPROVED]));
 
         $this->assertDatabaseHas('correction_requests', [
             'id' => $correction->id,
-            'status' => 1,
+            'status' => CorrectionRequest::STATUS_APPROVED,
             'approved_by' => $admin->id,
         ]);
 
@@ -159,7 +159,7 @@ class AdminAttendanceCorrectionTest extends TestCase
         $correction = CorrectionRequest::create([
             'user_id' => $user->id,
             'attendance_id' => $attendance->id,
-            'status' => 0,
+            'status' => CorrectionRequest::STATUS_PENDING,
         ]);
 
         CorrectionRequestDetail::create([
