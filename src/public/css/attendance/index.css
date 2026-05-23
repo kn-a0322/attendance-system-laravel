@@ -16,7 +16,6 @@
     min-height: calc(982px - 82px);
     margin: 0 auto;
     padding: 207px 20px 80px;
-    /* フレーム上端からステータスまで 289px（ヘッダー高さ 82px を差し引きして padding-top） */
 }
 
 .attendance-container {
@@ -43,7 +42,6 @@
     margin-bottom: 32px;
 }
 
-/* 日付: Regular 40px（デザイン上の 332px 幅では大きな文字が折り返すため、1行表示で幅は内容に合わせる） */
 .attendance-date {
     box-sizing: border-box;
     width: max-content;
@@ -59,7 +57,6 @@
     white-space: nowrap;
 }
 
-/* 時刻: Bold 80px（242px 固定では「09:50」が折り返すため、1行表示で幅は内容に合わせる） */
 .attendance-time {
     box-sizing: border-box;
     width: max-content;
@@ -88,7 +85,7 @@
     display: inline-flex;
 }
 
-/* ボタン共通: 221×77, radius 20, Bold 32px */
+/* ボタン共通*/
 .attendance-buttons .btn {
     box-sizing: border-box;
     width: 221px;
@@ -101,21 +98,20 @@
     font-family: inherit;
 }
 
-/* 出勤・退勤: 黒地・白文字 */
+/* 出勤・退勤*/
 .attendance-buttons .btn-start,
 .attendance-buttons .btn-end {
     background-color: #000000;
     color: #ffffff;
 }
 
-/* 休憩入・休憩戻: 白地・黒文字 */
+/* 休憩入・休憩戻 */
 .attendance-buttons .btn-rest {
     background-color: #ffffff;
     color: #000000;
     border: 1px solid #000000;
 }
 
-/* 退勤 + 休憩入 など 2 列: 約 300px 間隔 */
 .button-row {
     display: flex;
     flex-direction: row;

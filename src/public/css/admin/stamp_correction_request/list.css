@@ -1,5 +1,3 @@
-/* 管理者 申請一覧（ユーザー向け stamp_correction_request_list.css と同一仕様） */
-
 .content:has(.admin-stamp-req) {
     max-width: none;
     margin: 0;
@@ -21,7 +19,6 @@
     letter-spacing: 0.15em;
 }
 
-/* 勤怠一覧と同様：左アクセント + 見出し */
 .admin-stamp-req__header {
     display: flex;
     align-items: center;
@@ -50,8 +47,6 @@
     white-space: nowrap;
 }
 
-/* タブ: 承認待ち left 359 = 主領域左 306+53 相当。タブ 72×19 相当、2つ目は +178px 間隔 */
-/* 承認待ち(359) + 幅72 = 431、承認済み左537 → 隙間 106px */
 .stamp-correction-list__tabs {
     width: 100%;
     max-width: 900px;
@@ -75,7 +70,6 @@
     padding: 0;
 }
 
-/* Bold 16px, 字間 15% */
 .stamp-correction-list__tab-link {
     display: inline-flex;
     align-items: center;
@@ -105,7 +99,6 @@
     color: #000000;
 }
 
-/* 幅 900・高さ0相当の 1px 下線 #000 */
 .stamp-correction-list__tab-rule {
     width: 100%;
     max-width: 900px;
@@ -117,7 +110,6 @@
     flex-shrink: 0;
 }
 
-/* 白いテーブル枠: 幅 900・角 10。行が少ない・データがないときは下の余白を出さない（高さは中身任せ） */
 .stamp-correction-list__table {
     box-sizing: border-box;
     width: 100%;
@@ -144,7 +136,6 @@
     font-weight: 700;
 }
 
-/* 横分割のみ。＜th＞下は勤怠一覧のヘッダー扱い: 3px。データ行: 2px。折り返しなし＝1行＋はみ出しは省略 */
 .stamp-correction-list__table-header .stamp-correction-list__table-row,
 .stamp-correction-list__table-body .stamp-correction-list__table-row {
     height: 36px;
@@ -171,7 +162,6 @@
     max-width: 0;
 }
 
-/* ＜th＞と同系: Bold 16px #737373・字間 15%。「詳細」リンクのみ下記 .stamp-correction-list__table-link で #000 */
 .stamp-correction-list__table-body .stamp-correction-list__table-cell {
     box-sizing: border-box;
     height: 36px;
@@ -199,7 +189,6 @@
     border-bottom: none;
 }
 
-/* 列幅（合計 900px・table-layout: fixed で配分、セル折り返し抑止用に max-width: 0 継続） */
 .stamp-correction-list__table-header
     .stamp-correction-list__table-cell:nth-child(1),
 .stamp-correction-list__table-body
@@ -263,7 +252,7 @@
     text-decoration: underline;
 }
 
-/* PC 幅 1400–1540px（デザイン幅 1512px 付近で余白・タイポ・タブ・表行高を微調整） */
+/* PC 幅 1400–1540px*/
 @media (min-width: 1400px) and (max-width: 1540px) {
     .admin-stamp-req {
         padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px)

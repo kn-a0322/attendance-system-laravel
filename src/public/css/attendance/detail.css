@@ -64,8 +64,7 @@
     background: transparent;
 }
 
-/* 白いテーブルカード: 基準 900×449 / 枠 1px / 角 10
- * 内側の有効高さを 6 等分した「行の目安高さ」で横罫線の間隔をそろえる（行数は変動するがゆったり基準） */
+/* 白いテーブルカード: 基準 900×449 / 枠 1px / 角 10 */
 .attendance-detail__card {
     --card-border: 1px;
     --card-outer-h: 449px;
@@ -106,8 +105,6 @@
     margin: 0;
 }
 
-/* デザイン: th左端≈370 / td左端≈663 → 列幅 293px。th 左パディング 64px 相当 */
-/* th: Bold 16px #737373 / td: Bold 16px #000 / 字間 15% */
 .attendance-detail__table {
     width: 100%;
     table-layout: fixed;
@@ -115,14 +112,16 @@
     border-spacing: 0;
 }
 
-/* 6 等分基準の行高（最低）。行が増えた場合はカードの min-height 以上に自然に伸びる */
 .attendance-detail__table tbody tr:not(.attendance-detail__table-tr--remark) {
     height: 90px;
 }
 
 /* 横罫線: 1px（カード枠と同系色）等間隔感を優先。最下行は下線なし */
 .attendance-detail__table tbody tr:not(.attendance-detail__table-tr--remark) th,
-.attendance-detail__table tbody tr:not(.attendance-detail__table-tr--remark) td {
+.attendance-detail__table
+    tbody
+    tr:not(.attendance-detail__table-tr--remark)
+    td {
     border-bottom: 1px solid #e1e1e1;
 }
 
@@ -138,7 +137,7 @@
     letter-spacing: 0.15em;
 }
 
-/* 最下段 備考：他行と同じ th 左 64 / td 左 64・右 24（padding の一括指定で消えないよう縦横を明示） */
+/* 最下段 */
 .attendance-detail__table tbody tr.attendance-detail__table-tr--remark {
     height: 90px;
 }
@@ -158,7 +157,6 @@
     justify-content: flex-start;
 }
 
-/* カード左306 + th 左64 = 表ラベル付近370 / td 左は 306+293+64=663 */
 .attendance-detail__table th {
     width: 293px;
     max-width: 293px;
@@ -203,7 +201,6 @@
     max-width: 100%;
 }
 
-/* width 103, height 28, border 1px #E1E1E1, radius 4 */
 .attendance-detail__table td .input-time,
 .attendance-detail__table td input.input-time,
 .attendance-detail__table td input[type="text"].input-time {
@@ -224,7 +221,6 @@
     color: #000000;
 }
 
-/* 他の text input（.input-time なし）も同寸法に揃えない: 上記 .input-time のみ */
 .attendance-detail__time-between {
     box-sizing: border-box;
     display: flex;
@@ -266,7 +262,7 @@
     display: inline-block;
 }
 
-/* 承認待ち：休憩を出退勤と同じ 時刻〜時刻（複数は縦並び・行間広め） */
+/* 承認待ち */
 .attendance-detail__rest-readonly-list {
     display: flex;
     flex-direction: column;
@@ -278,7 +274,6 @@
     flex-wrap: nowrap;
 }
 
-/* 承認待ち・休憩が複数行のとき上揃え（行高は等分基準のままゆったり） */
 .attendance-detail--readonly tr:has(.attendance-detail__rest-readonly-list) th,
 .attendance-detail--readonly tr:has(.attendance-detail__rest-readonly-list) td {
     vertical-align: top;
@@ -286,7 +281,6 @@
     padding-bottom: 1.15rem;
 }
 
-/* 316×高さ, border 1px #D9D9D9, radius 4（行高に馴染む高さ） */
 .attendance-detail__table td textarea {
     box-sizing: border-box;
     display: block;
@@ -329,7 +323,7 @@
     text-align: left;
 }
 
-/* 承認待ち注釈（白カード枠外・右下。900px カラム内で右揃え） */
+/* 承認待ち注釈 */
 .attendance-detail--readonly .attendance-detail__pending-notice {
     box-sizing: border-box;
     align-self: flex-end;
@@ -345,7 +339,7 @@
     text-align: right;
 }
 
-/* 修正ボタン：表枠外 / 130×50 / 角5 / #000 / 白文字 Bold 22px */
+/* 修正ボタン*/
 .attendance-detail__body > .attendance-detail__button {
     display: flex;
     flex-shrink: 0;
@@ -410,10 +404,11 @@
     margin-top: 0.35rem;
 }
 
-/* PC 幅 1400–1540px（1512px 付近で余白・タイポを微調整） */
+/* PC 幅 1400–1540px */
 @media (min-width: 1400px) and (max-width: 1540px) {
     .attendance-detail {
-        padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px) clamp(48px, 6vw, 80px);
+        padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px)
+            clamp(48px, 6vw, 80px);
     }
 
     .attendance-detail__header {

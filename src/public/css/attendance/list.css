@@ -22,8 +22,6 @@
     letter-spacing: 0.15em;
 }
 
-/* タイトル・月ナビ・テーブルを同じ 900px 幅で中央揃え（左端を一致） */
-/* 修正申請完了など（勤怠登録の成功メッセージに近い色味） */
 .attendance-list__message {
     box-sizing: border-box;
     width: 100%;
@@ -54,7 +52,6 @@
     margin-bottom: 47px;
 }
 
-/* 左ボーダー（8px 幅 × 40px 高さの縦バー） */
 .attendance-list__title-accent {
     flex-shrink: 0;
     width: 8px;
@@ -157,7 +154,6 @@
     font-size: 16px;
 }
 
-/* ヘッダー行：高さ 36px（データ行と同じ）・縦線なし・下線のみ 3px・文字 #737373 Bold 16px */
 .attendance-list__table-header .attendance-list__table-row {
     height: 36px;
 }
@@ -177,8 +173,6 @@
     text-align: left;
 }
 
-/* 列幅：テーブル左306px基準の各列左端（363,552,685…）から算出 → 合計900px */
-/* 1列目: 306〜552 = 246px（テキスト起点363のため左パディング57px） */
 .attendance-list__table-header .attendance-list__table-cell:nth-child(1),
 .attendance-list__table-body .attendance-list__table-cell:nth-child(1) {
     width: 246px;
@@ -215,7 +209,6 @@
     text-align: center;
 }
 
-/* 勤怠データ行：高さ 36px・行間は 2px 横罫線・本文 Bold 16px #737373 */
 .attendance-list__table-body .attendance-list__table-row {
     height: 36px;
 }
@@ -251,10 +244,11 @@
     text-decoration: underline;
 }
 
-/* PC 幅 1400–1540px（デザイン幅 1512px 付近で余白・文字サイズを微調整） */
+/* PC 幅 1400–1540px*/
 @media (min-width: 1400px) and (max-width: 1540px) {
     .attendance-list {
-        padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px) clamp(48px, 6vw, 80px);
+        padding: clamp(64px, 7.5vw, 89px) clamp(16px, 2vw, 20px)
+            clamp(48px, 6vw, 80px);
     }
 
     .attendance-list__header {
