@@ -15,9 +15,21 @@
 <body>
 <div class="app">
     <header class="header">
-      <a href="/" class="header__logo" aria-label="{{ config('app.name', 'Attendance system') }} トップへ">
+      @if (Auth::check())
+        @if (Auth::user()->isAdmin())
+      <a href="{{ route('admin.attendance.list') }}" class="header__logo" aria-label="勤怠一覧へ">
         <img src="{{ asset('images/logo/coachtech-header-logo.png') }}" alt="COACHTECH">
       </a>
+        @else
+      <a href="{{ route('attendance.index') }}" class="header__logo" aria-label="勤怠登録へ">
+        <img src="{{ asset('images/logo/coachtech-header-logo.png') }}" alt="COACHTECH">
+      </a>
+        @endif
+      @else
+      <span class="header__logo">
+        <img src="{{ asset('images/logo/coachtech-header-logo.png') }}" alt="COACHTECH">
+      </span>
+      @endif
       @yield('link')
       @if (!Route::is('login') && !Route::is('register') && !Route::is('verify-email') && !Route::is('admin.login'))
       <nav class="header-nav">
